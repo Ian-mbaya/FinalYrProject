@@ -65,8 +65,8 @@ public class AdmPatient extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         combo_gender = new javax.swing.JComboBox();
@@ -105,8 +105,8 @@ public class AdmPatient extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         apdate = new javax.swing.JMenu();
         aptime = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -116,18 +116,6 @@ public class AdmPatient extends javax.swing.JFrame {
         setTitle("We Treat But God Heals");
 
         jToolBar1.setRollover(true);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/logout-icon_small.png"))); // NOI18N
-        jButton1.setToolTipText("Log Out");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton1);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/lightbox-prev.png"))); // NOI18N
         jButton2.setToolTipText("Back");
@@ -140,6 +128,18 @@ public class AdmPatient extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButton2);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/logout-icon_small.png"))); // NOI18N
+        jButton1.setToolTipText("Log Out");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
 
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -355,8 +355,10 @@ public class AdmPatient extends javax.swing.JFrame {
         });
 
         txt_descr.setColumns(20);
+        txt_descr.setLineWrap(true);
         txt_descr.setRows(5);
         txt_descr.setText("Enter The Conditions Description");
+        txt_descr.setWrapStyleWord(true);
         txt_descr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txt_descrMouseClicked(evt);
@@ -367,8 +369,10 @@ public class AdmPatient extends javax.swing.JFrame {
         jLabel12.setText("Recommedation");
 
         txt_rec.setColumns(20);
+        txt_rec.setLineWrap(true);
         txt_rec.setRows(5);
         txt_rec.setText("Enter Your Recommendation To The Patient");
+        txt_rec.setWrapStyleWord(true);
         txt_rec.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txt_recMouseClicked(evt);
@@ -481,15 +485,6 @@ public class AdmPatient extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/logout-icon_small.png"))); // NOI18N
-        jMenuItem4.setText("Log Out");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem4);
-
         jMenuItem3.setText("Message Records");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -497,6 +492,15 @@ public class AdmPatient extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/logout-icon_small.png"))); // NOI18N
+        jMenuItem6.setText("Logout");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -627,7 +631,7 @@ public class AdmPatient extends javax.swing.JFrame {
             String descr= txt_descr.getText().trim();
             String recom=txt_rec.getText().trim();
             if(!StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(dno) && !StringUtils.isNullOrEmpty(disease) && !StringUtils.isNullOrEmpty(descr) && !StringUtils.isNullOrEmpty(recom)){
-                String sql="insert into patient_treatment values('"+pno+"','"+dno+"','"+disease+"','"+descr+"','"+recom+"')";
+                String sql="insert into treatment values('"+pno+"','"+dno+"','"+disease+"','"+descr+"','"+recom+"')";
                 pst=conn.prepareStatement(sql);
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Successfull Saved");
@@ -639,16 +643,10 @@ public class AdmPatient extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_tsaveActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       new Login().setVisible(true);
-       dispose();
-       JOptionPane.showMessageDialog(null, "Logged Out");
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        new Login().setVisible(true);
        dispose();
-       JOptionPane.showMessageDialog(null, "Logged Out");
+       JOptionPane.showMessageDialog(null, "You Logged Out");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void pfnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfnameKeyTyped
@@ -721,10 +719,12 @@ public class AdmPatient extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new PatientRecords().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         new HealthSMS().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -758,6 +758,12 @@ public class AdmPatient extends javax.swing.JFrame {
     private void txt_phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_phoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_phoneActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        new Login().setVisible(true);
+        dispose();
+        JOptionPane.showMessageDialog(null, "You Logged Out");
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -821,8 +827,8 @@ public class AdmPatient extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

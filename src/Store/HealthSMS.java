@@ -241,7 +241,7 @@ public class HealthSMS extends javax.swing.JFrame {
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
        new Login().setVisible(true);
        dispose();
-       JOptionPane.showMessageDialog(null, "Logged Out");
+       JOptionPane.showMessageDialog(null, "You Logged Out");
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendActionPerformed
@@ -275,7 +275,7 @@ public class HealthSMS extends javax.swing.JFrame {
                       String cost=result.getString("cost");
                     if(!StringUtils.isNullOrEmpty(msgid) && !StringUtils.isNullOrEmpty(no) && !StringUtils.isNullOrEmpty(msg) && !StringUtils.isNullOrEmpty(cost)){
                       //JSONObject result = results.getJSONObject(i);
-                      String sql="insert into health_messages values('"+msgid+"','"+no+"','"+msg+"','"+cost+"')";
+                      String sql="insert into p_messages values('"+msgid+"','"+no+"','"+msg+"','"+cost+"')";
                       pst=conn.prepareStatement(sql);
                       /*pst.setString(1, result.getString("messageId"));
                       pst.setString(2, result.getString("number"));
@@ -318,17 +318,18 @@ public class HealthSMS extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new Login().setVisible(true);
         dispose();
-        JOptionPane.showMessageDialog(null, "Logged Out");
+        JOptionPane.showMessageDialog(null, "You Logged Out");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new SwitchBoard().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new Login().setVisible(true);
         dispose();
-        JOptionPane.showMessageDialog(null, "Logged Out");
+        JOptionPane.showMessageDialog(null, "You Logged Out");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_msgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_msgMouseClicked

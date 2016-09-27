@@ -86,8 +86,9 @@ public class PatientRecords extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ptable = new javax.swing.JTable();
@@ -125,17 +126,17 @@ public class PatientRecords extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/File-Delete-icon.png"))); // NOI18N
-        jButton2.setToolTipText("Delete");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/lightbox-prev.png"))); // NOI18N
+        jButton1.setToolTipText("Back");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton2);
+        jToolBar1.add(jButton1);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/Printer-icon2.png"))); // NOI18N
         jButton3.setToolTipText("Print");
@@ -148,6 +149,18 @@ public class PatientRecords extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButton3);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/File-Delete-icon.png"))); // NOI18N
+        jButton2.setToolTipText("Delete");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton2);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/logout-icon_small.png"))); // NOI18N
         jButton4.setToolTipText("Log Out");
@@ -221,6 +234,11 @@ public class PatientRecords extends javax.swing.JFrame {
         });
 
         gcombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
+        gcombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gcomboActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Area Of Residence");
 
@@ -332,7 +350,7 @@ public class PatientRecords extends javax.swing.JFrame {
                 .addComponent(srch, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmd_srch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 527, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 528, Short.MAX_VALUE)
                 .addComponent(dpno, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete)
@@ -376,11 +394,11 @@ public class PatientRecords extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4)
                             .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(gcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -392,7 +410,7 @@ public class PatientRecords extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Cmdupdate)
                             .addComponent(cmdclr))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(1440, 847));
@@ -402,13 +420,13 @@ public class PatientRecords extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         new Login().setVisible(true);
         dispose();
-        JOptionPane.showMessageDialog(null, "Logged Out");
+        JOptionPane.showMessageDialog(null, "You Logged Out");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new Login().setVisible(true);
         dispose();
-        JOptionPane.showMessageDialog(null, "Logged Out");
+        JOptionPane.showMessageDialog(null, "You Logged Out");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -425,7 +443,7 @@ public class PatientRecords extends javax.swing.JFrame {
        int d=JOptionPane.showConfirmDialog(null, "Do You Really Want To Delete???", "Delete", JOptionPane.YES_NO_OPTION);
        if(d==0){
         try{
-           String sql="delete from patients where P_No=?";
+           String sql="delete from patients where Patient_No=?";
            pst=conn.prepareStatement(sql);
            pst.setString(1, dpno.getText());
            pst.execute();
@@ -449,7 +467,7 @@ public class PatientRecords extends javax.swing.JFrame {
         int d=JOptionPane.showConfirmDialog(null, "Do You Really Want To Delete???", "Delete", JOptionPane.YES_NO_OPTION);
        if(d==0){
         try{
-           String sql="delete from patients where P_No=?";
+           String sql="delete from patients where Patient_No=?";
            pst=conn.prepareStatement(sql);
            pst.setString(1, dpno.getText());
            pst.execute();
@@ -480,24 +498,24 @@ public class PatientRecords extends javax.swing.JFrame {
     private void cmd_srchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_srchActionPerformed
         try{
             
-            String src="select * from patients where P_No=?";
+            String src="select * from patients where Patient_No=?";
             pst=conn.prepareStatement(src);
             pst.setString(1, srch.getText());
             rs=pst.executeQuery();
             if(rs.next()){
-                String pnos=rs.getString("P_No");
+                String pnos=rs.getString("Patient_No");
                 nop.setText(pnos);
-                String fn=rs.getString("First_name");
+                String fn=rs.getString("Fname");
                 namef.setText(fn);
-                String ln=rs.getString("Last_name");
+                String ln=rs.getString("Lname");
                 namel.setText(ln);
                 String dob=rs.getString("DOB");
                 ((JTextField)date.getDateEditor().getUiComponent()).setText(dob);
                 String gd=rs.getString("Gender");
                 gcombo.setSelectedItem(gd);
-                String phone=rs.getString("Phone_number");
+                String phone=rs.getString("Phone_Number");
                 pno.setText(phone);
-                String area=rs.getString("Area_of_residence");
+                String area=rs.getString("Area_of_Residence");
                 aor.setText(area);
                 
             }
@@ -522,8 +540,8 @@ public class PatientRecords extends javax.swing.JFrame {
             String area=aor.getText().trim(); 
            //int row=ptable.getSelectedRow();
             //String T_click=(ptable.getModel().getValueAt(row, 0).toString());
-            String sql="update patients set P_No='"+pn+"' ,First_name='"+fname+"' ,Last_name='"+lname+"' ,DOB='"+dob+"' "
-                    + ",Gender='"+gender+"' ,Phone_number='"+phone+"' ,Area_of_residence='"+area+"' where P_No='"+pn+"'";
+            String sql="update patients set Patient_No='"+pn+"' ,Fname='"+fname+"' ,Lname='"+lname+"' ,DOB='"+dob+"' "
+                    + ",Gender='"+gender+"' ,Phone_Number='"+phone+"' ,Area_of_Residence='"+area+"' where Patient_No='"+pn+"'";
             pst=conn.prepareStatement(sql);
            pst.execute();
            JOptionPane.showMessageDialog(null, "Successfully Updated");
@@ -545,23 +563,23 @@ public class PatientRecords extends javax.swing.JFrame {
         try{
             int row=ptable.getSelectedRow();
             String T_click=(ptable.getModel().getValueAt(row, 0).toString());
-            String sql="select * from patients where P_No='"+T_click+"'";
+            String sql="select * from patients where Patient_No='"+T_click+"'";
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             if(rs.next()){
-                String pnos=rs.getString("P_No");
+                String pnos=rs.getString("Patient_No");
                 nop.setText(pnos);
-                String fn=rs.getString("First_name");
+                String fn=rs.getString("Fname");
                 namef.setText(fn);
-                String ln=rs.getString("Last_name");
+                String ln=rs.getString("Lname");
                 namel.setText(ln);
                 String dob=rs.getString("DOB");
                 ((JTextField)date.getDateEditor().getUiComponent()).setText(dob);
                 String gd=rs.getString("Gender");
                 gcombo.setSelectedItem(gd);
-                String phone=rs.getString("Phone_number");
+                String phone=rs.getString("Phone_Number");
                 pno.setText(phone);
-                String area=rs.getString("Area_of_residence");
+                String area=rs.getString("Area_of_Residence");
                 aor.setText(area);
                 
             }
@@ -575,7 +593,7 @@ public class PatientRecords extends javax.swing.JFrame {
         int d=JOptionPane.showConfirmDialog(null, "Do You Really Want To Delete???", "Delete", JOptionPane.YES_NO_OPTION);
        if(d==0){
         try{
-           String sql="delete from patients where P_No=?";
+           String sql="delete from patients where Patient_No=?";
            pst=conn.prepareStatement(sql);
            pst.setString(1, dpno.getText());
            pst.execute();
@@ -604,6 +622,15 @@ public class PatientRecords extends javax.swing.JFrame {
             System.err.format("Cannot Print",pe.getMessage());
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void gcomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gcomboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gcomboActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new AdmPatient().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -649,6 +676,7 @@ public class PatientRecords extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser date;
     private javax.swing.JTextField dpno;
     private javax.swing.JComboBox gcombo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

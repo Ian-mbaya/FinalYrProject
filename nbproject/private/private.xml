@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/AnonymousHacker/Documents/NetBeansProjects/ThirdYrProject/src/Store/HealthSMS.java</file>
-            <file>file:/C:/Users/AnonymousHacker/Documents/NetBeansProjects/ThirdYrProject/src/Store/Test.java</file>
-            <file>file:/C:/Users/AnonymousHacker/Documents/NetBeansProjects/ThirdYrProject/src/Store/Home.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYrProject/src/Store/PatientRecords.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYrProject/src/Store/Signup.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYrProject/src/Store/HealthSMS.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYrProject/src/Store/DoctorRecords.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYrProject/src/Store/AdmPatient.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYrProject/src/Store/SendToDocs.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYrProject/src/Store/Admin.java</file>
         </group>
     </open-files>
 </project-private>

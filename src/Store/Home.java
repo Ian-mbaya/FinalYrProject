@@ -158,6 +158,11 @@ public class Home extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         hdate.setText("Date");
+        hdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hdateActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(hdate);
 
         htime.setText("Time");
@@ -274,6 +279,10 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error opening The File");
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void hdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hdateActionPerformed
 
     /**
      * @param args the command line arguments

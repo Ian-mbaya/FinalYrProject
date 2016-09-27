@@ -316,13 +316,13 @@ public class SendToDocs extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new Login().setVisible(true);
         dispose();
-        JOptionPane.showMessageDialog(null,"Logged Out");
+        JOptionPane.showMessageDialog(null,"You Logged Out");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new Login().setVisible(true);
         dispose();
-        JOptionPane.showMessageDialog(null,"Logged Out");
+        JOptionPane.showMessageDialog(null,"You Logged Out");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void d_noKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_d_noKeyTyped

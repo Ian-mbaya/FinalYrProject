@@ -108,6 +108,10 @@ public class DoctorRecords extends javax.swing.JFrame {
         clr = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         bt_delete = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        de = new com.toedter.calendar.JDateChooser();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -176,6 +180,7 @@ public class DoctorRecords extends javax.swing.JFrame {
         jToolBar1.add(jButton4);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/logout-icon_small.png"))); // NOI18N
+        jButton5.setToolTipText("Logout");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -202,8 +207,17 @@ public class DoctorRecords extends javax.swing.JFrame {
 
         jLabel4.setText("Gender");
 
+        dsch.setText("Enter Doctor's Number to Search");
+        dsch.setToolTipText("Enter Doctor's Number to Search");
+        dsch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dschMouseClicked(evt);
+            }
+        });
+
         cmdsrc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/search-icon.png"))); // NOI18N
         cmdsrc.setText("Search");
+        cmdsrc.setToolTipText("Search");
         cmdsrc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdsrcActionPerformed(evt);
@@ -242,11 +256,16 @@ public class DoctorRecords extends javax.swing.JFrame {
 
         bt_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/File-Delete-icon.png"))); // NOI18N
         bt_delete.setText("Delete");
+        bt_delete.setToolTipText("Delete");
         bt_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_deleteActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("ID Number");
+
+        jLabel9.setText("Date Employed");
 
         jMenu1.setText("File");
 
@@ -298,26 +317,30 @@ public class DoctorRecords extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
                         .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(pn)
-                                .addComponent(ln)
-                                .addComponent(fn)
-                                .addComponent(dn)
-                                .addComponent(gd, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(sp, 0, 167, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pn)
+                            .addComponent(ln)
+                            .addComponent(fn)
+                            .addComponent(dn)
+                            .addComponent(gd, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sp, 0, 167, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Cmd_update)
                                 .addGap(18, 18, 18)
-                                .addComponent(clr)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(clr))
+                            .addComponent(id)
+                            .addComponent(de, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1061, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(dsch, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,24 +393,32 @@ public class DoctorRecords extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(ln, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
+                            .addComponent(de, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(gd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(gd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(pn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Cmd_update)
                             .addComponent(clr))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -398,20 +429,20 @@ public class DoctorRecords extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         new Login().setVisible(true);
         dispose();
-        JOptionPane.showMessageDialog(null, "Logged Out");
+        JOptionPane.showMessageDialog(null, "You Logged Out");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         new Login().setVisible(true);
         dispose();
-        JOptionPane.showMessageDialog(null, "Logged Out");
+        JOptionPane.showMessageDialog(null, "You Logged Out");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int d=JOptionPane.showConfirmDialog(null, "Do You Really Want To Delete???", "Delete", JOptionPane.YES_NO_OPTION);
        if(d==0){
         try{
-           String sql="delete from doctors where D_No=?";
+           String sql="delete from doctors where Doc_No=?";
            pst=conn.prepareStatement(sql);
            pst.setString(1, ddno.getText());
            pst.execute();
@@ -439,7 +470,7 @@ public class DoctorRecords extends javax.swing.JFrame {
          int d=JOptionPane.showConfirmDialog(null, "Do You Really Want To Delete???", "Delete", JOptionPane.YES_NO_OPTION);
        if(d==0){
         try{
-           String sql="delete from doctors where D_No=?";
+           String sql="delete from doctors where Doc_No=?";
            pst=conn.prepareStatement(sql);
            pst.setString(1, ddno.getText());
            pst.execute();
@@ -471,6 +502,7 @@ public class DoctorRecords extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        new Admin().setVisible(true);
+       dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -490,18 +522,22 @@ public class DoctorRecords extends javax.swing.JFrame {
     private void cmdsrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdsrcActionPerformed
         try{
             
-            String src="select * from doctors where D_No=?";
+            String src="select * from doctors where Doc_No=?";
             pst=conn.prepareStatement(src);
             pst.setString(1, dsch.getText());
             rs=pst.executeQuery();
             if(rs.next()){
-                String pnos=rs.getString("D_No");
+                String pnos=rs.getString("Doc_No");
                 dn.setText(pnos);
-                String fnm=rs.getString("First_name");
+                String fnm=rs.getString("Fname");
                 fn.setText(fnm);
-                String lnm=rs.getString("Last_name");
+                String lnm=rs.getString("Lname");
                 ln.setText(lnm);
-                String gdr=rs.getString("gender");
+                String id_no=rs.getString("ID_No");
+                id.setText(id_no);
+                String d_emp=rs.getString("Date_Employed");
+                ((JTextField)de.getDateEditor().getUiComponent()).setText(d_emp);
+                String gdr=rs.getString("Gender");
                 gd.setSelectedItem(gdr);
                 String spec=rs.getString("Specialization");
                 sp.setSelectedItem(spec);
@@ -518,6 +554,7 @@ public class DoctorRecords extends javax.swing.JFrame {
         dn.setText("");
         fn.setText("");
         ln.setText("");
+        id.setText("");
         pn.setText("");
     }//GEN-LAST:event_clrActionPerformed
 
@@ -526,13 +563,14 @@ public class DoctorRecords extends javax.swing.JFrame {
            String doc= dn.getText().trim();
             String fname=fn.getText().trim();
             String lname= ln.getText().trim();
+            String id_no= id.getText().trim();
+            String date=((JTextField)de.getDateEditor().getUiComponent()).getText();
             String gender= gd.getSelectedItem().toString().trim();
             String specs= sp.getSelectedItem().toString().trim();
             String phone= pn.getText().trim();
            //int row=ptable.getSelectedRow();
             //String T_click=(ptable.getModel().getValueAt(row, 0).toString());
-            String sql="update doctors set D_No='"+doc+"' ,First_name='"+fname+"' ,Last_name='"+lname+"'"
-                    + ",gender='"+gender+"' ,Specialization='"+specs+"' ,Phone_number='"+phone+"' where D_No='"+doc+"'";
+            String sql="update doctors set Doc_No='"+doc+"' ,Fname='"+fname+"' ,Lname='"+lname+"',Gender='"+gender+"' ,Specialization='"+specs+"' ,Phone_Number='"+phone+"' where Doc_No='"+doc+"'";
             pst=conn.prepareStatement(sql);
            pst.execute();
            JOptionPane.showMessageDialog(null, "Successfully Updated");
@@ -546,21 +584,25 @@ public class DoctorRecords extends javax.swing.JFrame {
          try{
             int row=dtable.getSelectedRow();
             String T_click=(dtable.getModel().getValueAt(row, 0).toString());
-            String sql="select * from doctors where D_No='"+T_click+"'";
+            String sql="select * from doctors where Doc_No='"+T_click+"'";
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             if(rs.next()){
-                String pnos=rs.getString("D_No");
+                String pnos=rs.getString("Doc_No");
                 dn.setText(pnos);
-                String fnm=rs.getString("First_name");
+                String fnm=rs.getString("Fname");
                 fn.setText(fnm);
-                String lnm=rs.getString("Last_name");
+                String lnm=rs.getString("Lname");
                 ln.setText(lnm);
-                String ged=rs.getString("gender");
+                String id_no=rs.getString("ID_No");
+                id.setText(id_no);
+                String d_emp=rs.getString("Date_Employed");
+                ((JTextField)de.getDateEditor().getUiComponent()).setText(d_emp);
+                String ged=rs.getString("Gender");
                 gd.setSelectedItem(ged);
                 String spe=rs.getString("Specialization");
                 sp.setSelectedItem(spe);
-                String phone=rs.getString("Phone_number");
+                String phone=rs.getString("Phone_Number");
                 pn.setText(phone);
             }
         }catch(Exception e){
@@ -573,7 +615,7 @@ public class DoctorRecords extends javax.swing.JFrame {
         int d=JOptionPane.showConfirmDialog(null, "Do You Really Want To Delete???", "Delete", JOptionPane.YES_NO_OPTION);
        if(d==0){
         try{
-           String sql="delete from doctors where D_No=?";
+           String sql="delete from doctors where Doc_No=?";
            pst=conn.prepareStatement(sql);
            pst.setString(1, ddno.getText());
            pst.execute();
@@ -592,6 +634,10 @@ public class DoctorRecords extends javax.swing.JFrame {
        }
        DocTable();
     }//GEN-LAST:event_bt_deleteActionPerformed
+
+    private void dschMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dschMouseClicked
+        dsch.setText("");
+    }//GEN-LAST:event_dschMouseClicked
 
     /**
      * @param args the command line arguments
@@ -634,6 +680,7 @@ public class DoctorRecords extends javax.swing.JFrame {
     private javax.swing.JButton clr;
     private javax.swing.JButton cmdsrc;
     private javax.swing.JTextField ddno;
+    private com.toedter.calendar.JDateChooser de;
     private javax.swing.JTextField dn;
     private javax.swing.JMenu drdate;
     private javax.swing.JMenu drtime;
@@ -641,6 +688,7 @@ public class DoctorRecords extends javax.swing.JFrame {
     private javax.swing.JTable dtable;
     private javax.swing.JTextField fn;
     private javax.swing.JComboBox gd;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
@@ -652,6 +700,8 @@ public class DoctorRecords extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
