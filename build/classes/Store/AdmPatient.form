@@ -539,10 +539,11 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txt_dno">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Enter Your Work Number"/>
+                <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txt_dnoMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_dnoActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

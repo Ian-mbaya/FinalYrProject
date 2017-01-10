@@ -378,9 +378,13 @@
     <Component class="javax.swing.JTextField" name="fn">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fnActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fnKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="ln">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lnKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
@@ -388,6 +392,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="pn">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pnKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="sp">
       <Properties>
@@ -450,6 +457,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="id">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="idKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Store;
+import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.sql.*;
 import java.text.MessageFormat;
@@ -232,11 +233,28 @@ public class PatientRecords extends javax.swing.JFrame {
                 namefActionPerformed(evt);
             }
         });
+        namef.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                namefKeyTyped(evt);
+            }
+        });
+
+        namel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                namelKeyTyped(evt);
+            }
+        });
 
         gcombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
         gcombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gcomboActionPerformed(evt);
+            }
+        });
+
+        pno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pnoKeyTyped(evt);
             }
         });
 
@@ -631,6 +649,30 @@ public class PatientRecords extends javax.swing.JFrame {
         new AdmPatient().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void namefKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_namefKeyTyped
+         char c=evt.getKeyChar();
+       if((Character.isDigit(c)) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)){
+           getToolkit();
+           evt.consume();
+       }
+    }//GEN-LAST:event_namefKeyTyped
+
+    private void namelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_namelKeyTyped
+         char c=evt.getKeyChar();
+       if((Character.isDigit(c)) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)){
+           getToolkit();
+           evt.consume();
+       }
+    }//GEN-LAST:event_namelKeyTyped
+
+    private void pnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnoKeyTyped
+        char c=evt.getKeyChar();
+       if(!(Character.isDigit(c)) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)){
+           getToolkit();
+           evt.consume();
+       }
+    }//GEN-LAST:event_pnoKeyTyped
 
     /**
      * @param args the command line arguments

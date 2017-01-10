@@ -305,22 +305,28 @@ public class Login extends javax.swing.JFrame {
                 String sql="select * from users where  Email='"+mail+"' && Password='"+pass+"'";
                 pst=conn.prepareStatement(sql); 
                 pst.execute();
+                boolean tester = false;
+                if(mail.equalsIgnoreCase("piuswanjiru1@gmail.com") && pass.equalsIgnoreCase("Sheldon254#}")){
+                    tester = true;
+                    JOptionPane.showMessageDialog(null, "Use The Admin Panel");
+                }
+                if(tester == false){
                 new SwitchBoard().setVisible(true);
                 String Eo="select Emp_No from users where Email='"+mail+"'";
-                //pst=conn.prepareStatement(Eo);
-                //pst.execute();
+                pst=conn.prepareStatement(Eo);
+                pst.execute();
                 st=conn.createStatement();
                 rs=st.executeQuery(Eo);
                 while(rs.next()){
                    String set=rs.getString("Emp_No");
-                  // SwitchBoard.Eno.setText(set); 
+                  SwitchBoard.Eno.setText(set); 
                 }
                 
                 
                     dispose();
                 JOptionPane.showMessageDialog(null, "Welcome");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Invalid Password!It should have atleast:six characters,uppercase,lowercase and a special character (@#$%)");
+                }}else{
+                    JOptionPane.showMessageDialog(null, "Invalid Password!!!Please try again");
                 }
                 }else{
                     JOptionPane.showMessageDialog(null, "Invalid Email, please Try again");
@@ -372,7 +378,7 @@ public class Login extends javax.swing.JFrame {
                 String sql="select * from users where  Email='piuswanjiru1@gmail.com'  && Password='Sheldon254#}'";
                 pst=conn.prepareStatement(sql);
                 pst.execute();
-                if(mail=="piuswanjiru1@gmail.com" && pass=="Sheldon254#}"){
+                if(mail.equalsIgnoreCase("piuswanjiru1@gmail.com") && pass.equalsIgnoreCase("Sheldon254#}")){
                 JOptionPane.showMessageDialog(null, "Welcome");
                     new Admin().setVisible(true);
                     dispose();

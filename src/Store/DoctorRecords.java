@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Store;
+import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.sql.*;
 import java.text.MessageFormat;
@@ -231,8 +232,25 @@ public class DoctorRecords extends javax.swing.JFrame {
                 fnActionPerformed(evt);
             }
         });
+        fn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fnKeyTyped(evt);
+            }
+        });
+
+        ln.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                lnKeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("Phone Number");
+
+        pn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pnKeyTyped(evt);
+            }
+        });
 
         sp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "diabetes", "body fitness", "asthma", "allergies" }));
 
@@ -264,6 +282,12 @@ public class DoctorRecords extends javax.swing.JFrame {
         });
 
         jLabel8.setText("ID Number");
+
+        id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                idKeyTyped(evt);
+            }
+        });
 
         jLabel9.setText("Date Employed");
 
@@ -638,6 +662,38 @@ public class DoctorRecords extends javax.swing.JFrame {
     private void dschMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dschMouseClicked
         dsch.setText("");
     }//GEN-LAST:event_dschMouseClicked
+
+    private void fnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fnKeyTyped
+         char c=evt.getKeyChar();
+       if((Character.isDigit(c)) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)){
+           getToolkit();
+           evt.consume();
+       }
+    }//GEN-LAST:event_fnKeyTyped
+
+    private void idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idKeyTyped
+        char c=evt.getKeyChar();
+       if(!(Character.isDigit(c)) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)){
+           getToolkit();
+           evt.consume();
+       }
+    }//GEN-LAST:event_idKeyTyped
+
+    private void pnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnKeyTyped
+        char c=evt.getKeyChar();
+       if(!(Character.isDigit(c)) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)){
+           getToolkit();
+           evt.consume();
+       }
+    }//GEN-LAST:event_pnKeyTyped
+
+    private void lnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lnKeyTyped
+         char c=evt.getKeyChar();
+       if((Character.isDigit(c)) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)){
+           getToolkit();
+           evt.consume();
+       }
+    }//GEN-LAST:event_lnKeyTyped
 
     /**
      * @param args the command line arguments

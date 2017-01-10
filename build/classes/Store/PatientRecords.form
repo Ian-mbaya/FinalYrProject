@@ -398,9 +398,13 @@
     <Component class="javax.swing.JTextField" name="namef">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namefActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="namefKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="namel">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="namelKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="gcombo">
       <Properties>
@@ -416,6 +420,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="pno">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pnoKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>

@@ -6,6 +6,7 @@
 package Store;
 
 import static Store.Login.txt_mail;
+import static Store.SwitchBoard.Eno;
 import com.mysql.jdbc.StringUtils;
 import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
@@ -30,6 +31,8 @@ public class AdmPatient extends javax.swing.JFrame {
         initComponents();
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
+        String dn = Eno.getText();
+        txt_dno.setText(dn);
     }
     public void CurrentDateAndTime(){
         Thread clock= new Thread(){
@@ -334,10 +337,15 @@ public class AdmPatient extends javax.swing.JFrame {
 
         jLabel11.setText("Description");
 
-        txt_dno.setText("Enter Your Work Number");
+        txt_dno.setEditable(false);
         txt_dno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txt_dnoMouseClicked(evt);
+            }
+        });
+        txt_dno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_dnoActionPerformed(evt);
             }
         });
 
@@ -674,7 +682,7 @@ public class AdmPatient extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_phoneKeyTyped
 
     private void txt_dnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_dnoMouseClicked
-        txt_dno.setText("");
+        //txt_dno.setText("");
     }//GEN-LAST:event_txt_dnoMouseClicked
 
     private void pno_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pno_txtMouseClicked
@@ -764,6 +772,10 @@ public class AdmPatient extends javax.swing.JFrame {
         dispose();
         JOptionPane.showMessageDialog(null, "You Logged Out");
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void txt_dnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dnoActionPerformed
+        //txt_dno.setText(Eno.getText());
+    }//GEN-LAST:event_txt_dnoActionPerformed
 
     /**
      * @param args the command line arguments
