@@ -347,11 +347,11 @@ public class HealthSMS extends javax.swing.JFrame {
     }//GEN-LAST:event_clrActionPerformed
 
     private void spnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spnoKeyTyped
-        char c=evt.getKeyChar();
+        /*char c=evt.getKeyChar();
        if(!(Character.isDigit(c)) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)){
            getToolkit();
            evt.consume();
-       }
+       }*/
     }//GEN-LAST:event_spnoKeyTyped
 
     /**

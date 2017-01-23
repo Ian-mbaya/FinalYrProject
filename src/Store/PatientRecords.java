@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Store;
+import static Store.SwitchBoard.Eno;
 import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.sql.*;
@@ -29,6 +30,8 @@ public class PatientRecords extends javax.swing.JFrame {
     public PatientRecords() {
         initComponents();
         conn=DBConnection.ConnecrDB();
+        String dn = Eno.getText();
+        test.setText(dn);
         TableUpdate();
         CurrentDateAndTime();
     }
@@ -60,7 +63,8 @@ public class PatientRecords extends javax.swing.JFrame {
     
     public void TableUpdate(){
         try{
-        String sql="select * from patients";
+        String no = test.getText();
+        String sql="select * from patients where Assigned_To='"+no+"' ";
         pst=conn.prepareStatement(sql);
         rs=pst.executeQuery();
         ptable.setModel(DbUtils.resultSetToTableModel(rs));
@@ -114,6 +118,7 @@ public class PatientRecords extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         date = new com.toedter.calendar.JDateChooser();
+        test = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -284,6 +289,8 @@ public class PatientRecords extends javax.swing.JFrame {
             }
         });
 
+        date.setMaxSelectableDate(new java.util.Date(1484085680000L));
+
         jMenu1.setText("File");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
@@ -329,13 +336,10 @@ public class PatientRecords extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(470, 470, 470)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -344,7 +348,8 @@ public class PatientRecords extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(test, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(namel)
@@ -358,8 +363,7 @@ public class PatientRecords extends javax.swing.JFrame {
                                 .addComponent(Cmdupdate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                                 .addComponent(cmdclr))
-                            .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -373,6 +377,10 @@ public class PatientRecords extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete)
                 .addGap(276, 276, 276))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(470, 470, 470)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,7 +400,8 @@ public class PatientRecords extends javax.swing.JFrame {
                                     .addComponent(srch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cmd_srch))))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(38, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -427,8 +436,10 @@ public class PatientRecords extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Cmdupdate)
-                            .addComponent(cmdclr))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                            .addComponent(cmdclr))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(test, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116))))
         );
 
         setSize(new java.awt.Dimension(1440, 847));
@@ -745,5 +756,6 @@ public class PatientRecords extends javax.swing.JFrame {
     private javax.swing.JMenu prtime;
     private javax.swing.JTable ptable;
     private javax.swing.JTextField srch;
+    private javax.swing.JLabel test;
     // End of variables declaration//GEN-END:variables
 }

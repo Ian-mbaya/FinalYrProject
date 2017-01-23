@@ -291,6 +291,8 @@ public class DoctorRecords extends javax.swing.JFrame {
 
         jLabel9.setText("Date Employed");
 
+        de.setMaxSelectableDate(new java.util.Date(1484085712000L));
+
         jMenu1.setText("File");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));

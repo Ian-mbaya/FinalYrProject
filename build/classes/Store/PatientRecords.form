@@ -89,15 +89,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="470" max="-2" attributes="0"/>
-              <Component id="jToolBar1" min="-2" pref="121" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Component id="jLabel8" min="-2" pref="182" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -106,6 +102,7 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="test" min="-2" pref="76" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -124,7 +121,6 @@
                           <Component id="date" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jLabel8" min="-2" pref="182" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -141,6 +137,11 @@
               <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="276" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="470" max="-2" attributes="0"/>
+              <Component id="jToolBar1" min="-2" pref="121" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -148,7 +149,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jToolBar1" min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -167,6 +168,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="647" max="-2" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
@@ -211,9 +213,11 @@
                           <Component id="Cmdupdate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cmdclr" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="test" min="-2" pref="54" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -464,6 +468,13 @@
       </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="date">
+      <Properties>
+        <Property name="maxSelectableDate" type="java.util.Date" editor="org.netbeans.beaninfo.editors.DateEditor">
+          <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,1,89,-118,102,87,-128,120"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="test">
     </Component>
   </SubComponents>
 </Form>

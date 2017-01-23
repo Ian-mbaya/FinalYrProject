@@ -326,11 +326,11 @@ public class SendToDocs extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void d_noKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_d_noKeyTyped
-        char c=evt.getKeyChar();
+        /*char c=evt.getKeyChar();
        if(!(Character.isDigit(c)) || (c==KeyEvent.VK_BACK_SPACE) || (c==KeyEvent.VK_DELETE)){
            getToolkit();
            evt.consume();
-       }
+       }*/
     }//GEN-LAST:event_d_noKeyTyped
 
     /**
