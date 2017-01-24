@@ -85,11 +85,11 @@ public class AdmPatient extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         pclear = new javax.swing.JButton();
-        txt_area = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         att = new javax.swing.JLabel();
         att_docs = new javax.swing.JComboBox();
+        txt_area = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -236,18 +236,6 @@ public class AdmPatient extends javax.swing.JFrame {
             }
         });
 
-        txt_area.setText("Enter Area Of Residence");
-        txt_area.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txt_areaMouseClicked(evt);
-            }
-        });
-        txt_area.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_areaActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Patient Number");
 
         jLabel7.setText("Phone Number");
@@ -255,6 +243,8 @@ public class AdmPatient extends javax.swing.JFrame {
         att.setText("Assigned To");
 
         att_docs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DOC256", "DOC800" }));
+
+        txt_area.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lurambi", "Koro Matangi", "Jua Kali", "Kefinco", "Milimani", "Malaba", "Joy Land", "Town Center", "Lubao", "Tea Zone", "Sichirai", "Mwiyala", "Shinyalu" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -275,16 +265,15 @@ public class AdmPatient extends javax.swing.JFrame {
                                 .addComponent(att))
                             .addGap(34, 34, 34)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(psave)
                                         .addGap(18, 18, 18)
                                         .addComponent(pclear))
-                                    .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_area, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(combo_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(1, 1, 1))))
+                                    .addComponent(txt_phone, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                                    .addComponent(txt_area, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(combo_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(1, 1, 1))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -584,10 +573,6 @@ public class AdmPatient extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_areaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_areaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_areaActionPerformed
-
     private void pno_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pno_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pno_txtActionPerformed
@@ -610,7 +595,7 @@ public class AdmPatient extends javax.swing.JFrame {
             String date=((JTextField)dob.getDateEditor().getUiComponent()).getText();
             String gender= combo_gender.getSelectedItem().toString().trim();
             String phone= txt_phone.getText().trim();
-            String area=txt_area.getText().trim();
+            String area=txt_area.getSelectedItem().toString().trim();
             if(!StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(fname) && !StringUtils.isNullOrEmpty(lname) && !StringUtils.isNullOrEmpty(ass_to) && !StringUtils.isNullOrEmpty(date) && !StringUtils.isNullOrEmpty(gender) && !StringUtils.isNullOrEmpty(phone) && !StringUtils.isNullOrEmpty(area)){
                 if(PhoneNumberValidator.phone_validation(phone)){
                 String sql="insert into patients values('"+pno+"','"+fname+"','"+lname+"','"+ass_to+"','"+date+"','"+gender+"','"+phone+"','"+area+"')";
@@ -715,7 +700,6 @@ public class AdmPatient extends javax.swing.JFrame {
         pfname.setText("");
         plname.setText("");
         txt_phone.setText("");
-        txt_area.setText("");
     }//GEN-LAST:event_pclearActionPerformed
 
     private void txt_pnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_pnoMouseClicked
@@ -733,10 +717,6 @@ public class AdmPatient extends javax.swing.JFrame {
     private void txt_phoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_phoneMouseClicked
         txt_phone.setText("");
     }//GEN-LAST:event_txt_phoneMouseClicked
-
-    private void txt_areaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_areaMouseClicked
-         txt_area.setText("");
-    }//GEN-LAST:event_txt_areaMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new PatientRecords().setVisible(true);
@@ -869,7 +849,7 @@ public class AdmPatient extends javax.swing.JFrame {
     private javax.swing.JButton psave;
     private javax.swing.JButton tclear;
     private javax.swing.JButton tsave;
-    private javax.swing.JTextField txt_area;
+    private javax.swing.JComboBox txt_area;
     private javax.swing.JTextArea txt_descr;
     public static javax.swing.JTextField txt_dno;
     private javax.swing.JTextField txt_phone;

@@ -226,20 +226,18 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="psave" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="pclear" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="txt_phone" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
-                                          <Component id="txt_area" alignment="0" min="-2" pref="172" max="-2" attributes="0"/>
+                                          <Component id="txt_phone" alignment="0" pref="171" max="32767" attributes="0"/>
+                                          <Component id="txt_area" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="combo_gender" min="-2" pref="172" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="combo_gender" alignment="1" min="-2" pref="172" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -417,15 +415,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pclearActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_area">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Enter Area Of Residence"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txt_areaMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_areaActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Patient Number"/>
@@ -447,6 +436,27 @@
                   <StringArray count="2">
                     <StringItem index="0" value="DOC256"/>
                     <StringItem index="1" value="DOC800"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="txt_area">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="13">
+                    <StringItem index="0" value="Lurambi"/>
+                    <StringItem index="1" value="Koro Matangi"/>
+                    <StringItem index="2" value="Jua Kali"/>
+                    <StringItem index="3" value="Kefinco"/>
+                    <StringItem index="4" value="Milimani"/>
+                    <StringItem index="5" value="Malaba"/>
+                    <StringItem index="6" value="Joy Land"/>
+                    <StringItem index="7" value="Town Center"/>
+                    <StringItem index="8" value="Lubao"/>
+                    <StringItem index="9" value="Tea Zone"/>
+                    <StringItem index="10" value="Sichirai"/>
+                    <StringItem index="11" value="Mwiyala"/>
+                    <StringItem index="12" value="Shinyalu"/>
                   </StringArray>
                 </Property>
               </Properties>
