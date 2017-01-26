@@ -112,13 +112,13 @@ public class PatientRecords extends javax.swing.JFrame {
         gcombo = new javax.swing.JComboBox();
         pno = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        aor = new javax.swing.JTextField();
         Cmdupdate = new javax.swing.JButton();
         cmdclr = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         date = new com.toedter.calendar.JDateChooser();
         test = new javax.swing.JLabel();
+        aor = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -291,6 +291,8 @@ public class PatientRecords extends javax.swing.JFrame {
 
         date.setMaxSelectableDate(new java.util.Date(1484085680000L));
 
+        aor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lurambi", "Koro Matangi", "Jua Kali", "Kefinco", "Milimani", "Malaba", "Joy Land", "Town Center", "Lubao", "Tea Zone", "Sichirai", "Mwiyala", "Shinyalu" }));
+
         jMenu1.setText("File");
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0));
@@ -357,13 +359,13 @@ public class PatientRecords extends javax.swing.JFrame {
                             .addComponent(gcombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(namef)
                             .addComponent(nop)
-                            .addComponent(aor)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(Cmdupdate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                                 .addComponent(cmdclr))
-                            .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(aor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -545,7 +547,7 @@ public class PatientRecords extends javax.swing.JFrame {
                 String phone=rs.getString("Phone_Number");
                 pno.setText(phone);
                 String area=rs.getString("Area_of_Residence");
-                aor.setText(area);
+                aor.setSelectedItem(area);
                 
             }
         }catch(Exception e){
@@ -566,7 +568,7 @@ public class PatientRecords extends javax.swing.JFrame {
             String dob=((JTextField)date.getDateEditor().getUiComponent()).getText();
             String gender= gcombo.getSelectedItem().toString().trim();
             String phone= pno.getText().trim();
-            String area=aor.getText().trim(); 
+            String area=aor.getSelectedItem().toString().trim(); 
            //int row=ptable.getSelectedRow();
             //String T_click=(ptable.getModel().getValueAt(row, 0).toString());
             String sql="update patients set Patient_No='"+pn+"' ,Fname='"+fname+"' ,Lname='"+lname+"' ,DOB='"+dob+"' "
@@ -585,7 +587,6 @@ public class PatientRecords extends javax.swing.JFrame {
         namef.setText("");
         namel.setText("");
         pno.setText("");
-        aor.setText("");
     }//GEN-LAST:event_cmdclrActionPerformed
 
     private void ptableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ptableMouseClicked
@@ -609,7 +610,7 @@ public class PatientRecords extends javax.swing.JFrame {
                 String phone=rs.getString("Phone_Number");
                 pno.setText(phone);
                 String area=rs.getString("Area_of_Residence");
-                aor.setText(area);
+                aor.setSelectedItem(area);
                 
             }
         }catch(Exception e){
@@ -722,7 +723,7 @@ public class PatientRecords extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cmdupdate;
-    private javax.swing.JTextField aor;
+    private javax.swing.JComboBox aor;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton cmd_srch;
     private javax.swing.JButton cmdclr;
