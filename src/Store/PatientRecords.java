@@ -63,14 +63,14 @@ public class PatientRecords extends javax.swing.JFrame {
     
     public void TableUpdate(){
         try{
-        String no = test.getText();
-        String sql="select * from patients where Assigned_To='"+no+"' ";
-        pst=conn.prepareStatement(sql);
-        rs=pst.executeQuery();
-        ptable.setModel(DbUtils.resultSetToTableModel(rs));
-    }catch(Exception e){
-        JOptionPane.showMessageDialog(null, e);
-    }
+            String no = test.getText();
+            String sql="select * from patients where Assigned_To='"+no+"' ";
+            pst=conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            ptable.setModel(DbUtils.resultSetToTableModel(rs));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
         finally{
            try{
                pst.close();

@@ -31,6 +31,9 @@ public class AdmPatient extends javax.swing.JFrame {
         initComponents();
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
+        int pno = (int)(Math.random() * 1000);
+        String pn = Integer.toString(pno);
+        txt_pno.setText("PN"+pn);
         String dn = Eno.getText();
         txt_dno.setText(dn);
     }
@@ -187,7 +190,7 @@ public class AdmPatient extends javax.swing.JFrame {
 
         jLabel6.setText("Area of Residence");
 
-        txt_pno.setText("PN");
+        txt_pno.setEditable(false);
         txt_pno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txt_pnoMouseClicked(evt);
@@ -351,7 +354,6 @@ public class AdmPatient extends javax.swing.JFrame {
         });
 
         pno_txt.setEditable(false);
-        pno_txt.setText("PN");
         pno_txt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pno_txtMouseClicked(evt);

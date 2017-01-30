@@ -28,6 +28,9 @@ public class Signup extends javax.swing.JFrame {
         initComponents();
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
+        int dn = (int)(Math.random() * 1000);
+        String dno = Integer.toString(dn);
+        txt_dno.setText("DOC"+dno);
     }
     public void CurrentDateAndTime(){
        
@@ -165,7 +168,7 @@ public class Signup extends javax.swing.JFrame {
 
         jLabel1.setText("First Name");
 
-        txt_dno.setText("DOC");
+        txt_dno.setEditable(false);
 
         cmd_submit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/Actions-document-save-icon.png"))); // NOI18N
         cmd_submit.setText("Save");
