@@ -364,7 +364,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txt_pno">
               <Properties>
-                <Property name="text" type="java.lang.String" value="PN"/>
+                <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txt_pnoMouseClicked"/>
@@ -587,7 +587,6 @@
             <Component class="javax.swing.JTextField" name="pno_txt">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="text" type="java.lang.String" value="PN"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pno_txtMouseClicked"/>

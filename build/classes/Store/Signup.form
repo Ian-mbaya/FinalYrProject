@@ -290,7 +290,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txt_dno">
               <Properties>
-                <Property name="text" type="java.lang.String" value="DOC"/>
+                <Property name="editable" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
