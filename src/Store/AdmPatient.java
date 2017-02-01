@@ -8,6 +8,8 @@ package Store;
 import static Store.Login.txt_mail;
 import static Store.SwitchBoard.Eno;
 import com.mysql.jdbc.StringUtils;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.sql.*;
@@ -31,6 +33,8 @@ public class AdmPatient extends javax.swing.JFrame {
         initComponents();
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
+        setIconImage(img);
         int pno = (int)(Math.random() * 1000);
         String pn = Integer.toString(pno);
         txt_pno.setText("PN"+pn);

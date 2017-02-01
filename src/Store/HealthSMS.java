@@ -6,6 +6,8 @@
 package Store;
 
 import com.mysql.jdbc.StringUtils;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.*;
 import static java.lang.Thread.sleep;
@@ -33,6 +35,8 @@ public class HealthSMS extends javax.swing.JFrame {
         initComponents();
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
+        setIconImage(img);
     }
     
     public void CurrentDateAndTime(){

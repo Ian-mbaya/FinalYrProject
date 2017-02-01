@@ -5,6 +5,8 @@
  */
 package Store;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import static java.lang.Thread.sleep;
 import java.sql.*;
 import java.util.*;
@@ -28,6 +30,8 @@ public class Admin extends javax.swing.JFrame {
         initComponents();
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
+        setIconImage(img);
     }
 
     public void CurrentDateAndTime(){

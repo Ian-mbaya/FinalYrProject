@@ -5,6 +5,8 @@
  */
 package Store;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import static java.lang.Thread.sleep;
 import java.sql.*;
 import java.text.MessageFormat;
@@ -32,6 +34,8 @@ public class PatientMessages extends javax.swing.JFrame {
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
         DocTable();
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
+        setIconImage(img);
     }
     
     public void CurrentDateAndTime(){

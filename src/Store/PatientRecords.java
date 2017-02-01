@@ -5,6 +5,8 @@
  */
 package Store;
 import static Store.SwitchBoard.Eno;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.sql.*;
@@ -34,6 +36,8 @@ public class PatientRecords extends javax.swing.JFrame {
         test.setText(dn);
         TableUpdate();
         CurrentDateAndTime();
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
+        setIconImage(img);
     }
     
     public void CurrentDateAndTime(){

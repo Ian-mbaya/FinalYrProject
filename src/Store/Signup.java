@@ -6,6 +6,8 @@
 package Store;
 
 import com.mysql.jdbc.StringUtils;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.*;
@@ -31,6 +33,8 @@ public class Signup extends javax.swing.JFrame {
         int dn = (int)(Math.random() * 1000);
         String dno = Integer.toString(dn);
         txt_dno.setText("DOC"+dno);
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
+        setIconImage(img);
     }
     public void CurrentDateAndTime(){
        
