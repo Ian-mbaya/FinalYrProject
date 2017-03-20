@@ -323,7 +323,8 @@ public class Login extends javax.swing.JFrame {
                 rs=st.executeQuery(Eo);
                 while(rs.next()){
                    String set=rs.getString("Emp_No");
-                  SwitchBoard.Eno.setText(set); 
+                  //SwitchBoard.Eno.setText(set); 
+                   Empnumber.setEno2(set);
                 }
                 
                 

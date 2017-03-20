@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Store;
-import static Store.SwitchBoard.Eno;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -32,7 +31,7 @@ public class PatientRecords extends javax.swing.JFrame {
     public PatientRecords() {
         initComponents();
         conn=DBConnection.ConnecrDB();
-        String dn = Eno.getText();
+        String dn = Empnumber.getEno2();
         test.setText(dn);
         TableUpdate();
         CurrentDateAndTime();

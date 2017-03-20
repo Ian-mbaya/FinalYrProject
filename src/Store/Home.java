@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import static java.lang.Thread.sleep;
 import javax.swing.*;
 import java.sql.*;
@@ -51,21 +52,21 @@ public class Home extends javax.swing.JFrame {
         Thread clock= new Thread(){
             public void run(){
                 for(;;){
-        Calendar cal=new GregorianCalendar();
-        int yr=cal.get(Calendar.YEAR);
-        int mnth=cal.get(Calendar.MONTH);
-        int day=cal.get(Calendar.DAY_OF_MONTH);
-        hdate.setText("Date "+yr+"/"+(mnth + 1)+"/"+day);
+                        Calendar cal=new GregorianCalendar();
+                        int yr=cal.get(Calendar.YEAR);
+                        int mnth=cal.get(Calendar.MONTH);
+                        int day=cal.get(Calendar.DAY_OF_MONTH);
+                        hdate.setText("Date "+yr+"/"+(mnth + 1)+"/"+day);
         
-        int sec=cal.get(Calendar.SECOND);
-        int min=cal.get(Calendar.MINUTE);
-        int hr=cal.get(Calendar.HOUR);
-        htime.setText("Time "+hr+":"+min+":"+sec); 
-                    try {
-                        sleep(1000);
-                    } catch (InterruptedException ie) {
-                        Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ie);
-                    }
+                        int sec=cal.get(Calendar.SECOND);
+                        int min=cal.get(Calendar.MINUTE);
+                        int hr=cal.get(Calendar.HOUR);
+                        htime.setText("Time "+hr+":"+min+":"+sec); 
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException ie) {
+                            Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ie);
+                        }
                 }
             }
         };
@@ -266,7 +267,8 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         try{
-            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler "+"C:\\Users\\AnonymousHacker\\Documents\\NetBeansProjects\\AIHSCDMP\\src\\Store\\help\\keyboard shortcuts.pdf");
+//            File kb = new File("/Store/help/keyboard shortcuts.pdf");
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "C:\\Users\\Kaboom\\Documents\\NetBeansProjects\\ThirdYearProject\\src\\Store\\help\\keyboard shortcuts.pdf");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error opening The File");
         }
@@ -274,7 +276,8 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         try{
-            Runtime.getRuntime().exec("rundll32 url.dll, FileProtocolHandler "+"C:\\Users\\AnonymousHacker\\Documents\\NetBeansProjects\\AIHSCDMP\\src\\Store\\help\\About.pdf");
+//            File abt = new File("/Store/help/About.pdf");
+            Runtime.getRuntime().exec("rundll32 url.dll, FileProtocolHandler " + "C:\\Users\\Kaboom\\Documents\\NetBeansProjects\\ThirdYearProject\\src\\Store\\help\\About.pdf");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error opening The File");
         }
