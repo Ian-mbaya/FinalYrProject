@@ -35,6 +35,18 @@ public class AdmPatient extends javax.swing.JFrame {
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
         setIconImage(img);
         
+        try {
+            String sql1 = "select Doc_No from doctors";
+            pst = conn.prepareStatement(sql1);
+            rs = pst.executeQuery(sql1);
+              while (rs.next()) {                  
+                  String DNO = rs.getString("Doc_No");
+                  att_docs.addItem(DNO);
+              }
+        } catch (Exception e) {
+        }
+        
+        
 //        Randomly generate the patients number
         int pno = (int)(Math.random() * 1000);
         String pn = Integer.toString(pno);
@@ -253,7 +265,11 @@ public class AdmPatient extends javax.swing.JFrame {
 
         att.setText("Assigned To");
 
-        att_docs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DOC256", "DOC800" }));
+        att_docs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                att_docsActionPerformed(evt);
+            }
+        });
 
         txt_area.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lurambi", "Koro Matangi", "Jua Kali", "Kefinco", "Milimani", "Malaba", "Joy Land", "Town Center", "Lubao", "Tea Zone", "Sichirai", "Mwiyala", "Shinyalu" }));
 
@@ -296,9 +312,8 @@ public class AdmPatient extends javax.swing.JFrame {
                                         .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(att_docs, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txt_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
                         .addComponent(error_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,6 +620,13 @@ public class AdmPatient extends javax.swing.JFrame {
             String pno= txt_pno.getText().trim();
             String fname=pfname.getText().trim();
             String lname= plname.getText().trim();
+//            String sql1 = "select Doc_No from doctors";
+//            pst = conn.prepareStatement(sql1);
+//            rs = pst.executeQuery(sql1);
+//              while (rs.next()) {                  
+//                  String DNO = rs.getString("Doc_No");
+//                  att_docs.addItem(DNO);
+//              }
             String ass_to= att_docs.getSelectedItem().toString().trim();
             String date=((JTextField)dob.getDateEditor().getUiComponent()).getText();
             String gender= combo_gender.getSelectedItem().toString().trim();
@@ -783,6 +805,10 @@ public class AdmPatient extends javax.swing.JFrame {
     private void txt_dnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dnoActionPerformed
         //txt_dno.setText(Eno.getText());
     }//GEN-LAST:event_txt_dnoActionPerformed
+
+    private void att_docsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_att_docsActionPerformed
+
+    }//GEN-LAST:event_att_docsActionPerformed
 
     /**
      * @param args the command line arguments

@@ -254,11 +254,10 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="error_pno" min="-2" pref="363" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="112" max="32767" attributes="0"/>
+                      <EmptySpace pref="130" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -438,12 +437,12 @@
             <Component class="javax.swing.JComboBox" name="att_docs">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="DOC256"/>
-                    <StringItem index="1" value="DOC800"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="att_docsActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="txt_area">
               <Properties>

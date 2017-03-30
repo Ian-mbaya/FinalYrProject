@@ -39,6 +39,7 @@ public class HealthSMS extends javax.swing.JFrame {
         setIconImage(img);
     }
     
+    
     public void CurrentDateAndTime(){
         Thread clock= new Thread(){
             public void run(){
@@ -83,6 +84,8 @@ public class HealthSMS extends javax.swing.JFrame {
         clr = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         spno = new javax.swing.JTextField();
+        txt_no = new javax.swing.JTextField();
+        src_btn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -152,7 +155,7 @@ public class HealthSMS extends javax.swing.JFrame {
 
         jLabel1.setText("Phone Number");
 
-        spno.setText("Enter The Phone Number,start +254...");
+        spno.setEditable(false);
         spno.setToolTipText("Enter The Phone Number,start +254...");
         spno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -162,6 +165,15 @@ public class HealthSMS extends javax.swing.JFrame {
         spno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 spnoKeyTyped(evt);
+            }
+        });
+
+        txt_no.setText("Enter Patient Number and Search");
+
+        src_btn.setText("Search");
+        src_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                src_btnActionPerformed(evt);
             }
         });
 
@@ -198,36 +210,42 @@ public class HealthSMS extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(154, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(spno, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(272, 272, 272)
-                .addComponent(Send)
-                .addGap(43, 43, 43)
-                .addComponent(clr)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txt_no, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(spno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+                                .addGap(36, 36, 36)
+                                .addComponent(src_btn))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addComponent(Send)
+                        .addGap(43, 43, 43)
+                        .addComponent(clr)))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_no, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(src_btn))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(spno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,7 +364,7 @@ public class HealthSMS extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_msgMouseClicked
 
     private void spnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spnoMouseClicked
-        spno.setText("");
+//        spno.setText("");
     }//GEN-LAST:event_spnoMouseClicked
 
     private void clrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clrActionPerformed
@@ -362,6 +380,20 @@ public class HealthSMS extends javax.swing.JFrame {
            evt.consume();
        }*/
     }//GEN-LAST:event_spnoKeyTyped
+
+    private void src_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_src_btnActionPerformed
+        try {
+            String sql = "select * from patients where Patient_No=?";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, txt_no.getText());
+            rs = pst.executeQuery();
+            while (rs.next()) {                
+                String phone=rs.getString("Phone_Number");
+                spno.setText(phone);
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_src_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,6 +445,8 @@ public class HealthSMS extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTextField spno;
+    private javax.swing.JButton src_btn;
     private javax.swing.JTextArea txt_msg;
+    private javax.swing.JTextField txt_no;
     // End of variables declaration//GEN-END:variables
 }
