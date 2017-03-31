@@ -262,14 +262,14 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
                 .addGap(196, 196, 196)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(77, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,7 +277,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(624, 447));
@@ -312,7 +312,7 @@ public class Login extends javax.swing.JFrame {
                 boolean tester = false;
                 if(mail.equalsIgnoreCase("piuswanjiru1@gmail.com") && pass.equalsIgnoreCase("Sheldon254#}")){
                     tester = true;
-                    JOptionPane.showMessageDialog(null, "Use The Admin Panel");
+                    JOptionPane.showMessageDialog(null, "Please,Use The Admin Panel!!!");
                 }
                 if(tester == false){
                 new SwitchBoard().setVisible(true);
@@ -323,13 +323,21 @@ public class Login extends javax.swing.JFrame {
                 rs=st.executeQuery(Eo);
                 while(rs.next()){
                    String set=rs.getString("Emp_No");
-                  //SwitchBoard.Eno.setText(set); 
                    Empnumber.setEno2(set);
                 }
-                
+                String no = Empnumber.getEno2();
+                String sql4="select * from doctors where Doc_No='"+no+"'";
+                pst = conn.prepareCall(sql4);
+                rs = pst.executeQuery(sql4);
+                    while (rs.next()) {                        
+                        String fname = rs.getString("Fname");
+                        String lname = rs.getString("Lname");
+                        String conc = fname + " " + lname;
+                        UserNames.setNames(conc);
+                    }
                 
                     dispose();
-                JOptionPane.showMessageDialog(null, "Welcome");
+                JOptionPane.showMessageDialog(null, "Welcome " + UserNames.getNames() );
                 }}else{
                     JOptionPane.showMessageDialog(null, "Invalid Password!!!Please try again");
                 }
@@ -384,11 +392,11 @@ public class Login extends javax.swing.JFrame {
                 pst=conn.prepareStatement(sql);
                 pst.execute();
                 if(mail.equalsIgnoreCase("piuswanjiru1@gmail.com") && pass.equalsIgnoreCase("Sheldon254#}")){
-                JOptionPane.showMessageDialog(null, "Welcome");
+                JOptionPane.showMessageDialog(null, "Welcome " + UserNames.getNames());
                     new Admin().setVisible(true);
                     dispose();
                 }else{
-                    JOptionPane.showMessageDialog(null, "Sorry,You are not an Admin");
+                    JOptionPane.showMessageDialog(null, "Sorry,You are not an Admin!!!");
                 }
                 }else{
                     JOptionPane.showMessageDialog(null, "Invalid Password!It should have atleast:six characters,uppercase,lowercase and a special character (@#$%)");

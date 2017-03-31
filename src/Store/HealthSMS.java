@@ -168,8 +168,9 @@ public class HealthSMS extends javax.swing.JFrame {
             }
         });
 
-        txt_no.setText("Enter Patient Number and Search");
+        txt_no.setText("Enter Patient's Admittion Number to Search");
 
+        src_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/search-icon.png"))); // NOI18N
         src_btn.setText("Search");
         src_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +228,7 @@ public class HealthSMS extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txt_no, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(spno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
-                                .addGap(36, 36, 36)
+                                .addGap(30, 30, 30)
                                 .addComponent(src_btn))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(272, 272, 272)
@@ -242,9 +243,9 @@ public class HealthSMS extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_no, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(src_btn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(src_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_no, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -279,7 +280,7 @@ public class HealthSMS extends javax.swing.JFrame {
         
              // Specify the numbers that you want to send to in a comma-separated list
              // Please ensure you include the country code (+254 for Kenya in this case)
-             String recipients = spno.getText();
+             String recipients = "+254"+spno.getText();
         
              // And of course we want our recipients to know what we really do
              //String message = "We are lumberjacks. We code all day and sleep all night";

@@ -81,6 +81,8 @@ public class SendToDocs extends javax.swing.JFrame {
         dsend = new javax.swing.JButton();
         dclr = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        txt_dssrc = new javax.swing.JTextField();
+        dsrc = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -118,7 +120,7 @@ public class SendToDocs extends javax.swing.JFrame {
 
         jLabel1.setText("Message");
 
-        d_no.setText("Enter Phone Number,Start +254...");
+        d_no.setEditable(false);
         d_no.setToolTipText("Enter Phone Number,Start +254...");
         d_no.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -159,6 +161,16 @@ public class SendToDocs extends javax.swing.JFrame {
 
         jLabel2.setText("Phone Number");
 
+        txt_dssrc.setText("Enter Doctor's Number To Search");
+
+        dsrc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/search-icon.png"))); // NOI18N
+        dsrc.setText("Search");
+        dsrc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dsrcActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("File");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/logout-icon_small.png"))); // NOI18N
@@ -190,47 +202,54 @@ public class SendToDocs extends javax.swing.JFrame {
                         .addGap(195, 195, 195)
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                        .addGap(325, 325, 325)
+                        .addComponent(dsend)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dclr))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(d_no, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(dsend)
-                .addGap(35, 35, 35)
-                .addComponent(dclr)
-                .addGap(148, 148, 148))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addGap(32, 32, 32)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txt_dssrc, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(d_no, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
+                                .addGap(40, 40, 40)
+                                .addComponent(dsrc))
+                            .addComponent(jScrollPane1))))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(d_no, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(dsrc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_dssrc))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(149, 149, 149))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(d_no, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dsend)
                     .addComponent(dclr))
-                .addGap(0, 55, Short.MAX_VALUE))
+                .addGap(69, 69, 69))
         );
 
-        setSize(new java.awt.Dimension(643, 441));
+        setSize(new java.awt.Dimension(829, 535));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -241,7 +260,7 @@ public class SendToDocs extends javax.swing.JFrame {
         
              // Specify the numbers that you want to send to in a comma-separated list
              // Please ensure you include the country code (+254 for Kenya in this case)
-             String recipients =d_no.getText();
+             String recipients ="+254"+d_no.getText();
         
              // And of course we want our recipients to know what we really do
              //String message = "We are lumberjacks. We code all day and sleep all night";
@@ -305,7 +324,7 @@ public class SendToDocs extends javax.swing.JFrame {
     }//GEN-LAST:event_dclrActionPerformed
 
     private void d_noMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d_noMouseClicked
-        d_no.setText("");
+//        d_no.setText("");
     }//GEN-LAST:event_d_noMouseClicked
 
     private void d_txtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_d_txtMouseClicked
@@ -336,6 +355,21 @@ public class SendToDocs extends javax.swing.JFrame {
            evt.consume();
        }*/
     }//GEN-LAST:event_d_noKeyTyped
+
+    private void dsrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dsrcActionPerformed
+        try {
+            String sql = "select * from doctors where Doc_No=?";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, txt_dssrc.getText());
+            rs = pst.executeQuery();
+            while (rs.next()) {                
+                String phone=rs.getString("Phone_Number");
+                d_no.setText(phone);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_dsrcActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,6 +411,7 @@ public class SendToDocs extends javax.swing.JFrame {
     private javax.swing.JTextArea d_txt;
     private javax.swing.JButton dclr;
     private javax.swing.JButton dsend;
+    private javax.swing.JButton dsrc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -388,5 +423,6 @@ public class SendToDocs extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenu sdate;
     private javax.swing.JMenu stime;
+    private javax.swing.JTextField txt_dssrc;
     // End of variables declaration//GEN-END:variables
 }
