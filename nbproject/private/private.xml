@@ -5,10 +5,14 @@
         <group>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/SendToDocs.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/Login.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/Home.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/SwitchBoard.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/HealthSMS.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/AdmPatient.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/Admin.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/PatientRecords.java</file>
-            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/UserNames.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/Signup.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/DoctorRecords.java</file>
         </group>
     </open-files>
 </project-private>

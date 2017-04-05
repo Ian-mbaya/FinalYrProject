@@ -23,6 +23,8 @@ public class Login extends javax.swing.JFrame {
     PreparedStatement pst=null;
     ResultSet rs=null;
     Statement st=null;
+    
+    public static String holdNames;
     /**
      * Creates new form Login
      */
@@ -334,6 +336,7 @@ public class Login extends javax.swing.JFrame {
                         String lname = rs.getString("Lname");
                         String conc = fname + " " + lname;
                         UserNames.setNames(conc);
+                        holdNames = UserNames.getNames();
                     }
                 
                     dispose();

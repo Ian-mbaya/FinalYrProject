@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Store;
+import static Store.SelectedPatient.nmb;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -25,6 +26,7 @@ public class PatientRecords extends javax.swing.JFrame {
     Connection conn=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
+    public static String hold;
     /**
      * Creates new form PatientRecords
      */
@@ -602,6 +604,7 @@ public class PatientRecords extends javax.swing.JFrame {
             if(rs.next()){
                 String pnos=rs.getString("Patient_No");
                 nop.setText(pnos);
+                hold = nop.getText();
                 String fn=rs.getString("Fname");
                 namef.setText(fn);
                 String ln=rs.getString("Lname");
@@ -615,6 +618,27 @@ public class PatientRecords extends javax.swing.JFrame {
                 String area=rs.getString("Area_of_Residence");
                 aor.setSelectedItem(area);
                 
+           
+//            String sql2="select * from patients where Patient_No='"+T_click+"'";
+//            pst=conn.prepareStatement(sql);
+//            rs=pst.executeQuery();
+//            if(rs.next()){
+//                String pnos=rs.getString("Patient_No");
+//                nop.setText(pnos);
+//                String fn=rs.getString("Fname");
+//                namef.setText(fn);
+//                String ln=rs.getString("Lname");
+//                namel.setText(ln);
+//                String dob=rs.getString("DOB");
+//                ((JTextField)date.getDateEditor().getUiComponent()).setText(dob);
+//                String gd=rs.getString("Gender");
+//                gcombo.setSelectedItem(gd);
+//                String phone=rs.getString("Phone_Number");
+//                pno.setText(phone);
+//                String area=rs.getString("Area_of_Residence");
+//                aor.setSelectedItem(area);
+                new SelectedPatient().setVisible(true);
+                dispose();
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -754,7 +778,7 @@ public class PatientRecords extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTextField namef;
     private javax.swing.JTextField namel;
-    private javax.swing.JTextField nop;
+    public static javax.swing.JTextField nop;
     private javax.swing.JTextField pno;
     private javax.swing.JMenu prdate;
     private javax.swing.JMenu prtime;
