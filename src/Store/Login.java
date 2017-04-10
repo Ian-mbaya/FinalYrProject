@@ -25,6 +25,7 @@ public class Login extends javax.swing.JFrame {
     Statement st=null;
     
     public static String holdNames;
+    public static String Gno;
     /**
      * Creates new form Login
      */
@@ -324,22 +325,23 @@ public class Login extends javax.swing.JFrame {
                 st=conn.createStatement();
                 rs=st.executeQuery(Eo);
                 while(rs.next()){
+                    String set=rs.getString("Doc_No");
                    String f=rs.getString("Fname");
                    String l=rs.getString("Lname");
-                   holdNames = f + " " + l;
-//                   Empnumber.setEno2(set);
+//                   holdNames = f + " " + l;
+                   Empnumber.setEno2(set);
                 }
-//                String no = Empnumber.getEno2();
-//                String sql4="select * from doctors where Doc_No='"+no+"'";
-//                pst = conn.prepareCall(sql4);
-//                rs = pst.executeQuery(sql4);
-//                    while (rs.next()) {                        
-//                        String fname = rs.getString("Fname");
-//                        String lname = rs.getString("Lname");
-//                        String conc = fname + " " + lname;
-//                        UserNames.setNames(conc);
-//                        holdNames = UserNames.getNames();
-//                    }
+                String no = Empnumber.getEno2();
+                String sql4="select * from doctors where Doc_No='"+no+"'";
+                pst = conn.prepareStatement(sql4);
+                rs = pst.executeQuery(sql4);
+                    while (rs.next()) {                        
+                        String fname = rs.getString("Fname");
+                        String lname = rs.getString("Lname");
+                        String conc = fname + " " + lname;
+                        UserNames.setNames(conc);
+                        holdNames = UserNames.getNames();
+                    }
                 
                     dispose();
                 JOptionPane.showMessageDialog(null, "Welcome " + holdNames );

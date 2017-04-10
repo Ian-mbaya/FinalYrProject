@@ -756,8 +756,8 @@ public class PatientRecords extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JTextField namef;
-    private javax.swing.JTextField namel;
+    public static javax.swing.JTextField namef;
+    public static javax.swing.JTextField namel;
     public static javax.swing.JTextField nop;
     private javax.swing.JTextField pno;
     private javax.swing.JMenu prdate;

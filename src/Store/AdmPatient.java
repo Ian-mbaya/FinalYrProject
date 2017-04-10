@@ -27,49 +27,52 @@ public class AdmPatient extends javax.swing.JFrame {
     Connection conn=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
+    public static String doc;
+    public static String doc2;
     /**
      * Creates new form AdmPatient
      */
     
 //    pre-populates the available doctors
-    public void prefillDoctors(){
-                       
-                //        select doctors names
-        try {
-            String doc_available = (String)dap.getItemAt(0);
-//            test.setText(doc_available);
-            String sql1 = "select * from doctors where Specialization = '"+doc_available+"'";
-            pst = conn.prepareStatement(sql1);
-            rs = pst.executeQuery(sql1);
-            combo_type.removeAllItems();
-            avail_docs.removeAllItems();
-              while (rs.next()) {                  
-                  String f = rs.getString("Fname");
-                  String l = rs.getString("Lname");
-                  String comb = f + " " + l;
-                   
-                  avail_docs.addItem(comb);
-              }
-        } catch (Exception e1) {
-        }
-    }
+//    public void prefillDoctors(){
+//                       
+//                //        select doctors names
+//        try {
+////            String doc_available = (String)dap.getItemAt(0);
+////            test.setText(doc_available);
+//            String sql1 = "select * from doctors";
+//            pst = conn.prepareStatement(sql1);
+//            rs = pst.executeQuery(sql1);
+////            combo_type.removeAllItems();
+////            avail_docs.removeAllItems();
+//              while (rs.next()) {                  
+//                  String f = rs.getString("Fname");
+//                  String l = rs.getString("Lname");
+//                  String comb = f + " " + l;
+//                   
+//                  avail_docs.addItem(comb);
+//              }
+//        } catch (Exception e1) {
+//        }
+//    }
     
 //    pre-populates disease types
     public void prefillType(){
                        
                 //        select doctors names
         try {
-            String type = (String)dap.getItemAt(0);
-            test.setText(type);
-            String query = "select * from diseases where disease = '"+type+"'";
+//            String type = (String)dap.getItemAt(0);
+//            test.setText(type);
+            String query = "select * from doctors";
             System.out.println(query);
             pst = conn.prepareStatement(query);
             rs = pst.executeQuery(query);
-            combo_type.removeAllItems();
-             combo_type.addItem("Select Type");
+//            combo_type.removeAllItems();
+//             combo_type.addItem("Select Type");
               while (rs.next()) {                  
-                  String f = rs.getString("type");
-                  combo_type.addItem(f);
+                  String f = rs.getString("Lname");
+                  sele_doc.addItem(f);
+                  avail_docs.addItem(f);
               }
         } catch (Exception e1) {
         }
@@ -80,11 +83,11 @@ public class AdmPatient extends javax.swing.JFrame {
         initComponents();
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
-        prefillDoctors();
+//        prefillDoctors();
         prefillType();
         
         
-        dap.addItemListener(new ItemListener() {
+        sele_doc.addItemListener(new ItemListener() {
 
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -93,21 +96,53 @@ public class AdmPatient extends javax.swing.JFrame {
                
                 //        select doctors names
         try {
-            String doc_available = dap.getSelectedItem().toString().trim(); 
+            String doc_available = sele_doc.getSelectedItem().toString().trim(); 
 //            test.setText(doc_available);
-            String sql1 = "select * from doctors where Specialization = '"+doc_available+"'";
+            String sql1 = "select * from doctors where Lname = '"+doc_available+"'";
             System.err.println(sql1);
             pst = conn.prepareStatement(sql1);
             rs = pst.executeQuery(sql1);
-            combo_type.removeAllItems();
-            combo_type.addItem("Select Type");
-            avail_docs.removeAllItems();
+//            combo_type.removeAllItems();
+//            combo_type.addItem("Select Type");
+//            avail_docs.removeAllItems();
               while (rs.next()) {                  
-                  String f = rs.getString("Fname");
+                  doc = rs.getString("Doc_No");
                   String l = rs.getString("Lname");
-                  String comb = f + " " + l;
+//                  String comb = f + " " + l;
+//                  sele_doc.addItem(l);
                    
-                  avail_docs.addItem(comb);
+//                  avail_docs.addItem(comb);
+              }
+        } catch (Exception e1) {
+        }
+            }
+        });
+        
+        avail_docs.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                            
+
+               
+                //        select doctors names
+        try {
+            String doc_available = avail_docs.getSelectedItem().toString().trim(); 
+//            test.setText(doc_available);
+            String sql1 = "select * from doctors where Lname = '"+doc_available+"'";
+            System.err.println(sql1);
+            pst = conn.prepareStatement(sql1);
+            rs = pst.executeQuery(sql1);
+//            combo_type.removeAllItems();
+//            combo_type.addItem("Select Type");
+//            avail_docs.removeAllItems();
+              while (rs.next()) {                  
+                  doc2 = rs.getString("Doc_No");
+                  String l = rs.getString("Lname");
+//                  String comb = f + " " + l;
+//                  sele_doc.addItem(l);
+                   
+//                  avail_docs.addItem(comb);
               }
         } catch (Exception e1) {
         }
@@ -146,19 +181,33 @@ public class AdmPatient extends javax.swing.JFrame {
         
 
 //        pre-populate doctors names to assigned_to
-        try {
-            String query9 = "select * from doctors";
-            pst = conn.prepareStatement(query9);
-            rs = pst.executeQuery(query9);
-              while (rs.next()) {                  
-                  String f = rs.getString("Fname");
-                  String l = rs.getString("Lname");
-                  String comb = f + " " + l;
-                   
-                  sele_doc.addItem(comb);
-              }
-        } catch (Exception e) {
-        }
+//        try {
+//            String query9 = "select * from doctors";
+//            pst = conn.prepareStatement(query9);
+//            rs = pst.executeQuery(query9);
+//              while (rs.next()) {                  
+//                  String f = rs.getString("Fname");
+//                  String l = rs.getString("Lname");
+//                  String comb = l;
+//                   
+//                  sele_doc.addItem(comb);
+//                  avail_docs.addItem(comb);
+//              }
+//        } catch (Exception e) {
+//        }
+//        
+//         try {
+//            String n = sele_doc.getSelectedItem().toString().trim();
+//             System.out.println(doc);
+//            String query6 = "select Doc_No from doctors where Lname = '"+n+"' ";
+//             System.out.println(query6);
+//            pst = conn.prepareStatement(query6);
+//            rs = pst.executeQuery(query6);
+//              while (rs.next()) {                  
+//                  doc = rs.getString("Doc_No");
+//              }
+//        } catch (Exception e) {
+//        }
         
 //        Randomly generate the patients number
         int pno = (int)(Math.random() * 1000);
@@ -787,9 +836,9 @@ public class AdmPatient extends javax.swing.JFrame {
             String gender= combo_gender.getSelectedItem().toString().trim();
             String phone= txt_phone.getText().trim();
             String area=txt_area.getSelectedItem().toString().trim();
-            if(!StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(fname) && !StringUtils.isNullOrEmpty(lname) && !StringUtils.isNullOrEmpty(date) && !StringUtils.isNullOrEmpty(gender) && !StringUtils.isNullOrEmpty(phone) && !StringUtils.isNullOrEmpty(area)){
+            if(!StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(fname) && !StringUtils.isNullOrEmpty(lname) && !StringUtils.isNullOrEmpty(date) && !StringUtils.isNullOrEmpty(gender) && !StringUtils.isNullOrEmpty(doc) && !StringUtils.isNullOrEmpty(phone) && !StringUtils.isNullOrEmpty(area)){
                 if(PhoneNumberValidator.phone_validation(phone)){
-                String sql="insert into patients values('"+pno+"','"+fname+"','"+lname+"','"+date+"','"+gender+"','"+phone+"','"+area+"')";
+                String sql="insert into patients values('"+pno+"','"+fname+"','"+lname+"','"+date+"','"+gender+"','"+doc+"','"+phone+"','"+area+"')";
                 pst=conn.prepareStatement(sql);
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Registration Successfull");
@@ -822,14 +871,14 @@ public class AdmPatient extends javax.swing.JFrame {
             /*txt_dno.setText("select Emp_No from user where Email=txt_mail.getText()");
             pst=conn.prepareStatement(txt_dno);
             pst.execute();*/
-            String pno= txt_dno.getText().trim();
+            String pno= Empnumber.getEno2();
             String dno=pno_txt.getText().trim();
             String disease= dap.getSelectedItem().toString().trim();
-            String ass_to = avail_docs.getSelectedItem().toString().trim();
+//            String ass_to = avail_docs.getSelectedItem().toString().trim();
             String descr= txt_descr.getText().trim();
             String recom=txt_rec.getText().trim();
-            if(!StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(dno) && !StringUtils.isNullOrEmpty(disease) && !StringUtils.isNullOrEmpty(ass_to) && !StringUtils.isNullOrEmpty(descr) && !StringUtils.isNullOrEmpty(recom)){
-                String sql="insert into treatment values('"+pno+"','"+dno+"','"+disease+"','"+ass_to+"','"+descr+"','"+recom+"')";
+            if(!StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(dno) && !StringUtils.isNullOrEmpty(disease) && !StringUtils.isNullOrEmpty(doc2) && !StringUtils.isNullOrEmpty(descr) && !StringUtils.isNullOrEmpty(recom)){
+                String sql="insert into treatment values('"+pno+"','"+dno+"','"+disease+"','"+doc2+"','"+descr+"','"+recom+"')";
                 pst=conn.prepareStatement(sql);
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Successfull Saved");
