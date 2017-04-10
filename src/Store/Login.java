@@ -318,29 +318,31 @@ public class Login extends javax.swing.JFrame {
                 }
                 if(tester == false){
                 new SwitchBoard().setVisible(true);
-                String Eo="select Emp_No from users where Email='"+mail+"'";
+                String Eo="select * from doctors where Email='"+mail+"'";
                 pst=conn.prepareStatement(Eo);
                 pst.execute();
                 st=conn.createStatement();
                 rs=st.executeQuery(Eo);
                 while(rs.next()){
-                   String set=rs.getString("Emp_No");
-                   Empnumber.setEno2(set);
+                   String f=rs.getString("Fname");
+                   String l=rs.getString("Lname");
+                   holdNames = f + " " + l;
+//                   Empnumber.setEno2(set);
                 }
-                String no = Empnumber.getEno2();
-                String sql4="select * from doctors where Doc_No='"+no+"'";
-                pst = conn.prepareCall(sql4);
-                rs = pst.executeQuery(sql4);
-                    while (rs.next()) {                        
-                        String fname = rs.getString("Fname");
-                        String lname = rs.getString("Lname");
-                        String conc = fname + " " + lname;
-                        UserNames.setNames(conc);
-                        holdNames = UserNames.getNames();
-                    }
+//                String no = Empnumber.getEno2();
+//                String sql4="select * from doctors where Doc_No='"+no+"'";
+//                pst = conn.prepareCall(sql4);
+//                rs = pst.executeQuery(sql4);
+//                    while (rs.next()) {                        
+//                        String fname = rs.getString("Fname");
+//                        String lname = rs.getString("Lname");
+//                        String conc = fname + " " + lname;
+//                        UserNames.setNames(conc);
+//                        holdNames = UserNames.getNames();
+//                    }
                 
                     dispose();
-                JOptionPane.showMessageDialog(null, "Welcome " + UserNames.getNames() );
+                JOptionPane.showMessageDialog(null, "Welcome " + holdNames );
                 }}else{
                     JOptionPane.showMessageDialog(null, "Invalid Password!!!Please try again");
                 }
@@ -395,8 +397,7 @@ public class Login extends javax.swing.JFrame {
                 pst=conn.prepareStatement(sql);
                 pst.execute();
                 if(mail.equalsIgnoreCase("piuswanjiru1@gmail.com") && pass.equalsIgnoreCase("Sheldon254#}")){
-                JOptionPane.showMessageDialog(null, "Welcome " + UserNames.getNames());
-                    new Admin().setVisible(true);
+                JOptionPane.showMessageDialog(null, "Welcome " + holdNames);
                     dispose();
                 }else{
                     JOptionPane.showMessageDialog(null, "Sorry,You are not an Admin!!!");
