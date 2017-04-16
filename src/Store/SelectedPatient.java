@@ -10,6 +10,7 @@ import static Store.PatientRecords.hold;
 import static Store.PatientRecords.namef;
 import static Store.PatientRecords.namel;
 import static Store.PatientRecords.nop;
+import com.mysql.jdbc.StringUtils;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -18,6 +19,8 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import net.proteanit.sql.DbUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -160,7 +163,6 @@ public class SelectedPatient extends javax.swing.JFrame {
         btn_smsT = new javax.swing.JButton();
         btn_clrsmsT = new javax.swing.JButton();
         btn_sendT = new javax.swing.JButton();
-        btn_clrT = new javax.swing.JButton();
         combo_co = new javax.swing.JComboBox();
         combo_ty = new javax.swing.JComboBox();
         jLabel20 = new javax.swing.JLabel();
@@ -224,6 +226,11 @@ public class SelectedPatient extends javax.swing.JFrame {
         });
 
         jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Send SMS");
 
@@ -238,6 +245,11 @@ public class SelectedPatient extends javax.swing.JFrame {
         jLabel11.setText("Message");
 
         jButton1.setText("Send");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Clear");
 
@@ -406,12 +418,25 @@ public class SelectedPatient extends javax.swing.JFrame {
         jScrollPane5.setViewportView(txt_mT);
 
         btn_smsT.setText("Send");
+        btn_smsT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_smsTActionPerformed(evt);
+            }
+        });
 
         btn_clrsmsT.setText("Clear");
+        btn_clrsmsT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clrsmsTActionPerformed(evt);
+            }
+        });
 
         btn_sendT.setText("Send");
-
-        btn_clrT.setText("Clear");
+        btn_sendT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sendTActionPerformed(evt);
+            }
+        });
 
         jLabel20.setText("Prescription(s)");
 
@@ -423,6 +448,19 @@ public class SelectedPatient extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel18)
+                        .addGap(18, 18, 18)
+                        .addComponent(pno_T, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_smsT)
+                            .addComponent(btn_clrsmsT)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -460,25 +498,10 @@ public class SelectedPatient extends javax.swing.JFrame {
                                 .addGap(59, 59, 59)
                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(147, 147, 147)
-                                .addComponent(btn_sendT)
-                                .addGap(28, 28, 28)
-                                .addComponent(btn_clrT)))
+                                .addGap(157, 157, 157)
+                                .addComponent(btn_sendT)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 972, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel18)
-                        .addGap(18, 18, 18)
-                        .addComponent(pno_T, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_smsT)
-                            .addComponent(btn_clrsmsT))))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 972, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(113, 113, 113))
         );
         jPanel2Layout.setVerticalGroup(
@@ -512,11 +535,9 @@ public class SelectedPatient extends javax.swing.JFrame {
                                 .addComponent(jLabel21)
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel16)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_sendT)
-                            .addComponent(btn_clrT))
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_sendT)
+                        .addGap(19, 19, 19)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -632,6 +653,176 @@ public class SelectedPatient extends javax.swing.JFrame {
        TableUpdateP();
     }//GEN-LAST:event_P_updateActionPerformed
 
+    private void btn_sendTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sendTActionPerformed
+        try {
+            String no = pa_no.getText().trim();
+            String treated_by = tr_by.getText().trim();
+            String disease = combo_co.getSelectedItem().toString().trim();
+            String type = combo_ty.getSelectedItem().toString().trim();
+            String presc = txt_msg.getText();
+            if (!StringUtils.isNullOrEmpty(no) && !StringUtils.isNullOrEmpty(treated_by) && !StringUtils.isNullOrEmpty(disease) && !StringUtils.isNullOrEmpty(presc)) {
+                String sql="insert into treatment values('"+no+"','"+treated_by+"','"+disease+"','"+type+"','"+presc+"')";
+                pst=conn.prepareStatement(sql);
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Successfully Saved");
+            }else{
+                JOptionPane.showMessageDialog(null, "Please, Fill all the required fields");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btn_sendTActionPerformed
+
+    private void btn_smsTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_smsTActionPerformed
+        // Specify your login credentials
+             String username = "sheldon";
+             String apiKey   = "c596f432c84ad0036af4c7eca10b89f8a9c71520d90975564a8ca122514babca";
+        
+             // Specify the numbers that you want to send to in a comma-separated list
+             // Please ensure you include the country code (+254 for Kenya in this case)
+             String recipients = "+254"+pno_T.getText();
+        
+             // And of course we want our recipients to know what we really do
+             //String message = "We are lumberjacks. We code all day and sleep all night";
+             String message =txt_mT.getText();
+        
+            // Create a new instance of our awesome gateway class
+             AfricasTalkingGateway gateway  = new AfricasTalkingGateway(username, apiKey);
+        
+             // Thats it, hit send and we'll take care of the rest. Any errors will
+             // be captured in the Exception class below
+            try {
+                JSONArray results = gateway.sendMessage(recipients, message);
+                
+                for( int i = 0; i < results.length(); ++i ) {
+            try{
+                      JSONObject result = results.getJSONObject(i);
+                      String msgid= result.getString("messageId");
+                      String no=result.getString("number");
+                      String msg=txt_msg.getText();
+                      String cost=result.getString("cost");
+                    if(!StringUtils.isNullOrEmpty(msgid) && !StringUtils.isNullOrEmpty(no) && !StringUtils.isNullOrEmpty(msg) && !StringUtils.isNullOrEmpty(cost)){
+                      //JSONObject result = results.getJSONObject(i);
+                      String sql="insert into p_messages values('"+msgid+"','"+no+"','"+msg+"','"+cost+"')";
+                      pst=conn.prepareStatement(sql);
+                      /*pst.setString(1, result.getString("messageId"));
+                      pst.setString(2, result.getString("number"));
+                      pst.setString(3, txt_msg.getText());
+                      pst.setString(4, result.getString("cost"));*/
+                      pst.execute();
+                      System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
+                      System.out.print(result.getString("number") + ",");
+                      System.out.print(result.getString("messageId") + ",");
+                      System.out.println(result.getString("cost"));
+                      JOptionPane.showMessageDialog(null, "Message Sent Successfully");
+            }else{
+                      JOptionPane.showMessageDialog(null, "Please, Fill All The Fields!!!"); 
+            }
+            }catch(Exception e){
+                      JOptionPane.showMessageDialog(null, e);
+            }
+            finally{
+           try{
+               pst.close();
+               rs.close();
+           }catch(Exception e){
+               
+           }
+       }
+            }
+           }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Encountered an error while sending " + e.getMessage());
+            }
+            finally{
+           try{
+               pst.close();
+               rs.close();
+           }catch(Exception e){
+               
+           }
+       }
+    }//GEN-LAST:event_btn_smsTActionPerformed
+
+    private void btn_clrsmsTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clrsmsTActionPerformed
+        txt_mT.setText("");
+    }//GEN-LAST:event_btn_clrsmsTActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        p_n.setText("");
+        f_n.setText("");
+        l_n.setText("");
+        p_pn.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Specify your login credentials
+             String username = "sheldon";
+             String apiKey   = "c596f432c84ad0036af4c7eca10b89f8a9c71520d90975564a8ca122514babca";
+        
+             // Specify the numbers that you want to send to in a comma-separated list
+             // Please ensure you include the country code (+254 for Kenya in this case)
+             String recipients = "+254"+p_msg.getText();
+        
+             // And of course we want our recipients to know what we really do
+             //String message = "We are lumberjacks. We code all day and sleep all night";
+             String message =p_msgtxt.getText();
+        
+            // Create a new instance of our awesome gateway class
+             AfricasTalkingGateway gateway  = new AfricasTalkingGateway(username, apiKey);
+        
+             // Thats it, hit send and we'll take care of the rest. Any errors will
+             // be captured in the Exception class below
+            try {
+                JSONArray results = gateway.sendMessage(recipients, message);
+                
+                for( int i = 0; i < results.length(); ++i ) {
+            try{
+                      JSONObject result = results.getJSONObject(i);
+                      String msgid= result.getString("messageId");
+                      String no=result.getString("number");
+                      String msg=txt_msg.getText();
+                      String cost=result.getString("cost");
+                    if(!StringUtils.isNullOrEmpty(msgid) && !StringUtils.isNullOrEmpty(no) && !StringUtils.isNullOrEmpty(msg) && !StringUtils.isNullOrEmpty(cost)){
+                      //JSONObject result = results.getJSONObject(i);
+                      String sql="insert into p_messages values('"+msgid+"','"+no+"','"+msg+"','"+cost+"')";
+                      pst=conn.prepareStatement(sql);
+                      /*pst.setString(1, result.getString("messageId"));
+                      pst.setString(2, result.getString("number"));
+                      pst.setString(3, txt_msg.getText());
+                      pst.setString(4, result.getString("cost"));*/
+                      pst.execute();
+                      System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
+                      System.out.print(result.getString("number") + ",");
+                      System.out.print(result.getString("messageId") + ",");
+                      System.out.println(result.getString("cost"));
+                      JOptionPane.showMessageDialog(null, "Message Sent Successfully");
+            }else{
+                      JOptionPane.showMessageDialog(null, "Please, Fill All The Fields!!!"); 
+            }
+            }catch(Exception e){
+                      JOptionPane.showMessageDialog(null, e);
+            }
+            finally{
+           try{
+               pst.close();
+               rs.close();
+           }catch(Exception e){
+               
+           }
+       }
+            }
+           }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Encountered an error while sending " + e.getMessage());
+            }
+            finally{
+           try{
+               pst.close();
+               rs.close();
+           }catch(Exception e){
+               
+           }
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -669,7 +860,6 @@ public class SelectedPatient extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton P_update;
-    private javax.swing.JButton btn_clrT;
     private javax.swing.JButton btn_clrsmsT;
     private javax.swing.JButton btn_sendT;
     private javax.swing.JButton btn_smsT;

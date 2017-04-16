@@ -34,27 +34,27 @@ public class AdmPatient extends javax.swing.JFrame {
      */
     
 //    pre-populates the available doctors
-//    public void prefillDoctors(){
-//                       
-//                //        select doctors names
-//        try {
-////            String doc_available = (String)dap.getItemAt(0);
-////            test.setText(doc_available);
-//            String sql1 = "select * from doctors";
-//            pst = conn.prepareStatement(sql1);
-//            rs = pst.executeQuery(sql1);
-////            combo_type.removeAllItems();
-////            avail_docs.removeAllItems();
-//              while (rs.next()) {                  
-//                  String f = rs.getString("Fname");
-//                  String l = rs.getString("Lname");
+    public void prefillDoctors(){
+                       
+                //        select doctors names
+        try {
+            String doc_available = (String)dap.getItemAt(0);
+//            test.setText(doc_available);
+            String sql1 = "select * from doctors where Specialization = '"+doc_available+"' ";
+            pst = conn.prepareStatement(sql1);
+            rs = pst.executeQuery(sql1);
+//            combo_type.removeAllItems();
+            avail_docs.removeAllItems();
+              while (rs.next()) {                  
+                  String f = rs.getString("Fname");
+                  String l = rs.getString("Lname");
 //                  String comb = f + " " + l;
-//                   
-//                  avail_docs.addItem(comb);
-//              }
-//        } catch (Exception e1) {
-//        }
-//    }
+                   
+                  avail_docs.addItem(l);
+              }
+        } catch (Exception e1) {
+        }
+    }
     
 //    pre-populates disease types
     public void prefillType(){
@@ -64,7 +64,7 @@ public class AdmPatient extends javax.swing.JFrame {
 //            String type = (String)dap.getItemAt(0);
 //            test.setText(type);
             String query = "select * from doctors";
-            System.out.println(query);
+//            System.out.println(query);
             pst = conn.prepareStatement(query);
             rs = pst.executeQuery(query);
 //            combo_type.removeAllItems();
@@ -72,7 +72,7 @@ public class AdmPatient extends javax.swing.JFrame {
               while (rs.next()) {                  
                   String f = rs.getString("Lname");
                   sele_doc.addItem(f);
-                  avail_docs.addItem(f);
+//                  avail_docs.addItem(f);
               }
         } catch (Exception e1) {
         }
@@ -83,9 +83,40 @@ public class AdmPatient extends javax.swing.JFrame {
         initComponents();
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
-//        prefillDoctors();
+        prefillDoctors();
         prefillType();
         
+        
+        dap.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                            
+
+               
+                //        select doctors names
+        try {
+            String doc_available = dap.getSelectedItem().toString().trim(); 
+//            test.setText(doc_available);
+            String sql1 = "select * from doctors where Specialization = '"+doc_available+"'";
+//            System.err.println(sql1);
+            pst = conn.prepareStatement(sql1);
+            rs = pst.executeQuery(sql1);
+//            combo_type.removeAllItems();
+//            combo_type.addItem("Select Type");
+            avail_docs.removeAllItems();
+              while (rs.next()) {                  
+                  doc = rs.getString("Doc_No");
+                  String l = rs.getString("Lname");
+//                  String comb = f + " " + l;
+//                  sele_doc.addItem(l);
+                   
+                  avail_docs.addItem(l);
+              }
+        } catch (Exception e1) {
+        }
+            }
+        });
         
         sele_doc.addItemListener(new ItemListener() {
 
@@ -149,32 +180,32 @@ public class AdmPatient extends javax.swing.JFrame {
             }
         });
         
-        combo_type.addItemListener(new ItemListener() {
-
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-             
-        try {
-            String disease = dap.getSelectedItem().toString().trim();
-            String d_type = combo_type.getSelectedItem().toString().trim(); 
-            test.setText(d_type);
-            String query2 = "select * from doctors where Specialization = '"+disease+"' and type = '"+d_type+"' ";
-            System.out.println(query2);
-            pst = conn.prepareStatement(query2);
-            rs = pst.executeQuery(query2);
-            avail_docs.removeAllItems();
-            
-              while (rs.next()) {                  
-                  String f = rs.getString("Fname");
-                  String l = rs.getString("Lname");
-                  String comb = f + " " + l;
-                   
-                  avail_docs.addItem(comb);
-              }
-        } catch (Exception e1) {
-        }
-            }
-        });
+//        combo_type.addItemListener(new ItemListener() {
+//
+//            @Override
+//            public void itemStateChanged(ItemEvent e) {
+//             
+//        try {
+//            String disease = dap.getSelectedItem().toString().trim();
+//            String d_type = combo_type.getSelectedItem().toString().trim(); 
+//            test.setText(d_type);
+//            String query2 = "select * from doctors where Specialization = '"+disease+"' and type = '"+d_type+"' ";
+//            System.out.println(query2);
+//            pst = conn.prepareStatement(query2);
+//            rs = pst.executeQuery(query2);
+//            avail_docs.removeAllItems();
+//            
+//              while (rs.next()) {                  
+//                  String f = rs.getString("Fname");
+//                  String l = rs.getString("Lname");
+//                  String comb = f + " " + l;
+//                   
+//                  avail_docs.addItem(comb);
+//              }
+//        } catch (Exception e1) {
+//        }
+//            }
+//        });
         
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
         setIconImage(img);
@@ -294,9 +325,6 @@ public class AdmPatient extends javax.swing.JFrame {
         dap = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
         avail_docs = new javax.swing.JComboBox();
-        test = new javax.swing.JTextField();
-        combo_type = new javax.swing.JComboBox();
-        jLabel15 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -563,7 +591,7 @@ public class AdmPatient extends javax.swing.JFrame {
         txt_descr.setColumns(20);
         txt_descr.setLineWrap(true);
         txt_descr.setRows(5);
-        txt_descr.setText("Enter The Conditions Description");
+        txt_descr.setText("Enter Signs and Symptoms of the patient");
         txt_descr.setWrapStyleWord(true);
         txt_descr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -610,87 +638,60 @@ public class AdmPatient extends javax.swing.JFrame {
 
         jLabel14.setText("Assigned To");
 
-        combo_type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "diabetes mellitus", "diabetes inspidus", "breast cnacer", "skin cancer", "throat cancer", "prostate cancer" }));
-
-        jLabel15.setText("Type");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(test, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
-                                .addGap(58, 58, 58)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txt_dno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                                        .addComponent(pno_txt, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addComponent(avail_docs, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(dap, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(131, 131, 131)
-                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(combo_type, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel10)))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8))
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_dno, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dap, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(avail_docs, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pno_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
+                        .addGap(230, 230, 230)
                         .addComponent(tsave)
-                        .addGap(28, 28, 28)
+                        .addGap(18, 18, 18)
                         .addComponent(tclear)))
-                .addContainerGap(511, Short.MAX_VALUE))
+                .addContainerGap(682, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txt_dno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_dno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pno_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(dap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(combo_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(test, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(avail_docs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(avail_docs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
@@ -698,10 +699,10 @@ public class AdmPatient extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tsave)
                     .addComponent(tclear, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addContainerGap(323, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Treatment  Details", jPanel2);
+        jTabbedPane1.addTab("Admission  Details", jPanel2);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/icon_microscope.png"))); // NOI18N
 
@@ -727,7 +728,8 @@ public class AdmPatient extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Message Records");
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/Document-New-icon.png"))); // NOI18N
+        jMenuItem3.setText("Admission Records");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -798,7 +800,7 @@ public class AdmPatient extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
         );
 
@@ -878,7 +880,7 @@ public class AdmPatient extends javax.swing.JFrame {
             String descr= txt_descr.getText().trim();
             String recom=txt_rec.getText().trim();
             if(!StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(dno) && !StringUtils.isNullOrEmpty(disease) && !StringUtils.isNullOrEmpty(doc2) && !StringUtils.isNullOrEmpty(descr) && !StringUtils.isNullOrEmpty(recom)){
-                String sql="insert into treatment values('"+pno+"','"+dno+"','"+disease+"','"+doc2+"','"+descr+"','"+recom+"')";
+                String sql="insert into admission_details values('"+pno+"','"+dno+"','"+disease+"','"+doc2+"','"+descr+"','"+recom+"')";
                 pst=conn.prepareStatement(sql);
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Successfull Saved");
@@ -1055,7 +1057,6 @@ public class AdmPatient extends javax.swing.JFrame {
     private javax.swing.JMenu aptime;
     private javax.swing.JComboBox avail_docs;
     private javax.swing.JComboBox combo_gender;
-    private javax.swing.JComboBox combo_type;
     private javax.swing.JComboBox dap;
     private com.toedter.calendar.JDateChooser dob;
     private javax.swing.JLabel error_pno;
@@ -1067,7 +1068,6 @@ public class AdmPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1098,7 +1098,6 @@ public class AdmPatient extends javax.swing.JFrame {
     private javax.swing.JButton psave;
     private javax.swing.JComboBox sele_doc;
     private javax.swing.JButton tclear;
-    private javax.swing.JTextField test;
     private javax.swing.JButton tsave;
     private javax.swing.JComboBox txt_area;
     private javax.swing.JTextArea txt_descr;
