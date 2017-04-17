@@ -395,7 +395,6 @@ public class AdmPatient extends javax.swing.JFrame {
 
         dob.setToolTipText("Enter Date Of Birth");
         dob.setDateFormatString(" yyyy/MM/d");
-        dob.setMaxSelectableDate(new java.util.Date(1484085711000L));
 
         psave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/Actions-document-save-icon.png"))); // NOI18N
         psave.setText("Save");
@@ -967,7 +966,7 @@ public class AdmPatient extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        new HealthSMS().setVisible(true);
+        new PatientMessages().setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -977,7 +976,7 @@ public class AdmPatient extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        new PatientMessages().setVisible(true);
+        new AdmissionDetails().setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 

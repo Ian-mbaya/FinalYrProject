@@ -80,12 +80,6 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_pwrd = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        mail_adm = new javax.swing.JTextField();
-        pass_adm = new javax.swing.JPasswordField();
-        adm_log = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         ldate = new javax.swing.JMenu();
         ltime = new javax.swing.JMenu();
@@ -198,61 +192,6 @@ public class Login extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("LOGIN", jPanel1);
 
-        jLabel4.setText("Email");
-
-        jLabel5.setText("Password");
-
-        pass_adm.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pass_admKeyPressed(evt);
-            }
-        });
-
-        adm_log.setText("Login");
-        adm_log.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adm_logActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(adm_log))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(mail_adm)
-                            .addComponent(pass_adm, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))))
-                .addContainerGap(159, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(mail_adm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(pass_adm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(adm_log)
-                .addContainerGap(105, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("ADMIN", jPanel2);
-
         ldate.setText("Date");
         jMenuBar1.add(ldate);
 
@@ -315,7 +254,9 @@ public class Login extends javax.swing.JFrame {
                 boolean tester = false;
                 if(mail.equalsIgnoreCase("piuswanjiru1@gmail.com") && pass.equalsIgnoreCase("Sheldon254#}")){
                     tester = true;
-                    JOptionPane.showMessageDialog(null, "Please,Use The Admin Panel!!!");
+                    new Admin().setVisible(true);
+                    dispose();
+//                    JOptionPane.showMessageDialog(null, "Please,Use The Admin Panel!!!");
                 }
                 if(tester == false){
                 new SwitchBoard().setVisible(true);
@@ -325,7 +266,7 @@ public class Login extends javax.swing.JFrame {
                 st=conn.createStatement();
                 rs=st.executeQuery(Eo);
                 while(rs.next()){
-                    String set=rs.getString("Doc_No");
+                   String set=rs.getString("Doc_No");
                    String f=rs.getString("Fname");
                    String l=rs.getString("Lname");
 //                   holdNames = f + " " + l;
@@ -388,82 +329,6 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txt_pwrdKeyTyped
 
-    private void adm_logActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adm_logActionPerformed
-        try{
-            String mail= mail_adm.getText().trim().toLowerCase();
-            String pass=pass_adm.getText().trim();
-            if(!StringUtils.isNullOrEmpty(mail) && !StringUtils.isNullOrEmpty(pass)){
-                if(EmailValidator.email_validation(mail)){
-                if(PasswordValidator.pass_validation(pass)){
-                String sql="select * from users where  Email='piuswanjiru1@gmail.com'  && Password='Sheldon254#}'";
-                pst=conn.prepareStatement(sql);
-                pst.execute();
-                if(mail.equalsIgnoreCase("piuswanjiru1@gmail.com") && pass.equalsIgnoreCase("Sheldon254#}")){
-                JOptionPane.showMessageDialog(null, "Welcome " + holdNames);
-                    dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Sorry,You are not an Admin!!!");
-                }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Invalid Password!It should have atleast:six characters,uppercase,lowercase and a special character (@#$%)");
-                }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Invalid Email, please Try again");
-                }
-            } else{
-                JOptionPane.showMessageDialog(null, "Please, Fill All The Fields!!!");
-            }
-       }catch(SQLException e){
-           JOptionPane.showMessageDialog(null, e);
-       }
-        finally{
-           try{
-               pst.close();
-               rs.close();
-           }catch(Exception e){
-               
-           }
-       }
-    }//GEN-LAST:event_adm_logActionPerformed
-
-    private void pass_admKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pass_admKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            try{
-            String mail= mail_adm.getText().trim().toLowerCase();
-            String pass=pass_adm.getText().trim();
-            if(!StringUtils.isNullOrEmpty(mail) && !StringUtils.isNullOrEmpty(pass)){
-                if(EmailValidator.email_validation(mail)){
-                if(PasswordValidator.pass_validation(pass)){
-                String sql="select * from users where  Email='"+mail+"' && Password='"+pass+"'";
-                pst=conn.prepareStatement(sql);
-                pst.execute();
-                JOptionPane.showMessageDialog(null, "Welcome");
-                    new Admin().setVisible(true);
-                    dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Invalid password");
-                }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Invalid Email, please Try again");
-                }
-            } else{
-                JOptionPane.showMessageDialog(null, "Please, Fill All The Fields!!!");
-            }
-       }catch(SQLException e){
-           JOptionPane.showMessageDialog(null, e);
-       }
-            finally{
-           try{
-               pst.close();
-               rs.close();
-           }catch(Exception e){
-               
-           }
-       }
-        }
-        
-    }//GEN-LAST:event_pass_admKeyPressed
-
     /**
      * @param args the command line arguments
      */
@@ -501,24 +366,18 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adm_log;
     private javax.swing.JButton cmd_login;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenu ldate;
     private javax.swing.JMenu ltime;
-    private javax.swing.JTextField mail_adm;
-    private javax.swing.JPasswordField pass_adm;
     public static javax.swing.JTextField txt_mail;
     private javax.swing.JPasswordField txt_pwrd;
     // End of variables declaration//GEN-END:variables

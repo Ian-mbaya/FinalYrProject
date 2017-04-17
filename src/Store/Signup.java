@@ -30,9 +30,13 @@ public class Signup extends javax.swing.JFrame {
         initComponents();
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
+        
+//        Randomly generate doctors numbers
         int dn = (int)(Math.random() * 1000);
         String dno = Integer.toString(dn);
         txt_dno.setText("DOC"+dno);
+        
+//        txt_mail.setText(txt_email.getText());
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
         setIconImage(img);
     }
@@ -95,6 +99,10 @@ public class Signup extends javax.swing.JFrame {
         txt_idno = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         date_emp = new com.toedter.calendar.JDateChooser();
+        jLabel12 = new javax.swing.JLabel();
+        combo_type = new javax.swing.JComboBox();
+        jLabel13 = new javax.swing.JLabel();
+        txt_email = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -211,7 +219,12 @@ public class Signup extends javax.swing.JFrame {
         jLabel11.setText("Date Employed");
 
         date_emp.setDateFormatString(" yyyy/MM/d");
-        date_emp.setMaxSelectableDate(new java.util.Date(1484085688000L));
+
+        jLabel12.setText("Type");
+
+        combo_type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "diabetes mellitus", "diabetes inspidus", "breast cancer", "throat cancer", "skin cancer", "prostate cancer" }));
+
+        jLabel13.setText("Email");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -220,29 +233,24 @@ public class Signup extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel6))
-                            .addGap(22, 22, 22))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(18, 18, 18)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
-                        .addGap(22, 22, 22)))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel13))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txt_career, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txt_email, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(date_emp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_idno, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(combo_g, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE)
@@ -253,7 +261,8 @@ public class Signup extends javax.swing.JFrame {
                             .addComponent(txt_dno, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_fname, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_lname, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_pno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                            .addComponent(txt_pno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(combo_type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addComponent(lbl_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))))
@@ -281,25 +290,39 @@ public class Signup extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
                     .addComponent(date_emp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(combo_g, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_career, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(combo_g, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txt_career, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_pno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addComponent(lbl_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbl_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(combo_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txt_pno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmd_submit)
                     .addComponent(cmd_clear))
-                .addGap(88, 88, 88))
+                .addGap(51, 51, 51))
         );
 
         jTabbedPane1.addTab("Enter Your Details", jPanel1);
@@ -307,6 +330,8 @@ public class Signup extends javax.swing.JFrame {
         jLabel7.setText("Email");
 
         jLabel8.setText("Password");
+
+        txt_mail.setEditable(false);
 
         Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Store/icons/Actions-document-save-icon.png"))); // NOI18N
         Save.setText("Save");
@@ -384,7 +409,7 @@ public class Signup extends javax.swing.JFrame {
                 .addComponent(lbl_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_email, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Login Details", jPanel2);
@@ -429,7 +454,7 @@ public class Signup extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
                 .addGap(18, 18, 18))
         );
@@ -451,15 +476,21 @@ public class Signup extends javax.swing.JFrame {
             String date=((JTextField)date_emp.getDateEditor().getUiComponent()).getText();
             String gender= combo_g.getSelectedItem().toString().trim();
             String spec= txt_career.getSelectedItem().toString().trim();
+            String type= combo_type.getSelectedItem().toString().trim();
             String pno=txt_pno.getText().trim();
-            if(!StringUtils.isNullOrEmpty(dno) && !StringUtils.isNullOrEmpty(fname) && !StringUtils.isNullOrEmpty(lname) && !StringUtils.isNullOrEmpty(id) && !StringUtils.isNullOrEmpty(date) && !StringUtils.isNullOrEmpty(gender) && !StringUtils.isNullOrEmpty(spec) && !StringUtils.isNullOrEmpty(pno)){
+            String mail=txt_email.getText().trim().toLowerCase();
+            if(!StringUtils.isNullOrEmpty(dno) && !StringUtils.isNullOrEmpty(fname) && !StringUtils.isNullOrEmpty(lname) && !StringUtils.isNullOrEmpty(id) && !StringUtils.isNullOrEmpty(date) && !StringUtils.isNullOrEmpty(gender) && !StringUtils.isNullOrEmpty(spec) && !StringUtils.isNullOrEmpty(type) && !StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(mail)){
                 if(ValidateName.name_validation(fname)){
                 if(ValidateName.name_validation(lname)){
                 if(PhoneNumberValidator.phone_validation(pno)){
-                String sql="insert into doctors values('"+dno+"','"+fname+"','"+lname+"','"+id+"','"+date+"','"+gender+"','"+spec+"','"+pno+"')";
+                if(EmailValidator.email_validation(mail)){
+                String sql="insert into doctors values('"+dno+"','"+fname+"','"+lname+"','"+id+"','"+date+"','"+gender+"','"+spec+"','"+type+"','"+pno+"','"+mail+"')";
                 pst=conn.prepareStatement(sql);
                 pst.execute();
                 JOptionPane.showMessageDialog(null, fname  +  "You have been Successfully Registered");
+                }else{
+                    lbl_pno.setText("Invalid Email Address!!!");
+                }
                 }else{
                     lbl_pno.setText("Invalid Phone Number!!!");
                 }
@@ -558,6 +589,7 @@ public class Signup extends javax.swing.JFrame {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         txt.setText(txt_dno.getText());
+        txt_mail.setText(txt_email.getText());
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void cmd_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_clearActionPerformed
@@ -628,6 +660,7 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JButton cmd_login;
     private javax.swing.JButton cmd_submit;
     private javax.swing.JComboBox combo_g;
+    private javax.swing.JComboBox combo_type;
     private javax.swing.JMenu date;
     private com.toedter.calendar.JDateChooser date_emp;
     private javax.swing.JButton jButton2;
@@ -635,6 +668,8 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -657,6 +692,7 @@ public class Signup extends javax.swing.JFrame {
     public static javax.swing.JTextField txt;
     private javax.swing.JComboBox txt_career;
     public static javax.swing.JTextField txt_dno;
+    private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_fname;
     private javax.swing.JTextField txt_idno;
     public static javax.swing.JTextField txt_lname;

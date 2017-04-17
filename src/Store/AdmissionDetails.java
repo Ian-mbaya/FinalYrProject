@@ -5,7 +5,6 @@
  */
 package Store;
 
-import static Store.PatientRecords.nop;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +30,8 @@ public class AdmissionDetails extends javax.swing.JFrame {
     
      public void TableUpdateAD(){
         try{
-            String sql="select * from admission_details";
+            String no = Empnumber.getEno2();
+            String sql="select * from admission_details where Admitted_by = '"+no+"' ";
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             adm_details.setModel(DbUtils.resultSetToTableModel(rs));

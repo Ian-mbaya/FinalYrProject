@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Store;
-import static Store.SelectedPatient.nmb;
+
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
