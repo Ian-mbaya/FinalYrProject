@@ -7,6 +7,8 @@ package Store;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.sql.*;
@@ -30,6 +32,24 @@ public class PatientRecords extends javax.swing.JFrame {
     /**
      * Creates new form PatientRecords
      */
+    
+    //    pre-populates Sub-counties
+    public void prefillSubCounty(){   
+        try {
+            String county=(String)txt_county.getItemAt(0);
+//            String[] kksubs = new String[]{"Wamumu","Thiba","Nyangati","Mahigaini","Mutithi","Nguka","Kutus","Karira"};
+            txt_sub.addItem("Wamumu");
+            txt_sub.addItem("Thiba");
+            txt_sub.addItem("Nyangati");
+            txt_sub.addItem("Mahigaini");
+            txt_sub.addItem("Mutithi");
+            txt_sub.addItem("Nguka");
+            txt_sub.addItem("Kutus");
+            txt_sub.addItem("Karira");
+        } catch (Exception e1) {
+        }
+    }
+    
     public PatientRecords() {
         initComponents();
         conn=DBConnection.ConnecrDB();
@@ -37,8 +57,47 @@ public class PatientRecords extends javax.swing.JFrame {
         test.setText(dn);
         TableUpdate();
         CurrentDateAndTime();
+        prefillSubCounty();
+        
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
         setIconImage(img);
+        
+        //        Handle County and sub-county Selection
+           txt_county.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+        try {
+            String county = txt_county.getSelectedItem().toString().trim();
+            if (county.equalsIgnoreCase("Kakamega")) {
+               txt_sub.removeAllItems();
+               txt_sub.addItem("Lurambi");
+               txt_sub.addItem("Lugari");
+               txt_sub.addItem("Likunyani");
+               txt_sub.addItem("Navakholo");
+               txt_sub.addItem("Butere");
+               txt_sub.addItem("Mumias East");
+               txt_sub.addItem("Mumias West");
+               txt_sub.addItem("Matungu");
+               txt_sub.addItem("Khwisero");
+               txt_sub.addItem("Ikolomani");
+               txt_sub.addItem("Malava");
+               txt_sub.addItem("Shinyalu");
+            }else{
+                txt_sub.removeAllItems();
+                txt_sub.addItem("Wamumu");
+                txt_sub.addItem("Thiba");
+                txt_sub.addItem("Nyangati");
+                txt_sub.addItem("Mahigaini");
+                txt_sub.addItem("Mutithi");
+                txt_sub.addItem("Nguka");
+                txt_sub.addItem("Kutus");
+                txt_sub.addItem("Karira");
+            }
+        } catch (Exception e1) {
+        }
+            }
+        });
     }
     
     public void CurrentDateAndTime(){
@@ -123,7 +182,9 @@ public class PatientRecords extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         date = new com.toedter.calendar.JDateChooser();
         test = new javax.swing.JLabel();
-        aor = new javax.swing.JComboBox();
+        txt_county = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        txt_sub = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -268,7 +329,7 @@ public class PatientRecords extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Area Of Residence");
+        jLabel7.setText("County");
 
         Cmdupdate.setText("Update");
         Cmdupdate.addActionListener(new java.awt.event.ActionListener() {
@@ -296,7 +357,9 @@ public class PatientRecords extends javax.swing.JFrame {
 
         date.setMaxSelectableDate(new java.util.Date(1484085680000L));
 
-        aor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lurambi", "Koro Matangi", "Jua Kali", "Kefinco", "Milimani", "Malaba", "Joy Land", "Town Center", "Lubao", "Tea Zone", "Sichirai", "Mwiyala", "Shinyalu" }));
+        txt_county.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kirinyaga", "Kakamega" }));
+
+        jLabel9.setText("Sub County");
 
         jMenu1.setText("File");
 
@@ -356,21 +419,22 @@ public class PatientRecords extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel7)
                             .addComponent(jLabel1)
-                            .addComponent(test, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(test, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Cmdupdate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmdclr))
                             .addComponent(namel)
                             .addComponent(pno)
                             .addComponent(gcombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(namef)
                             .addComponent(nop)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(Cmdupdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                                .addComponent(cmdclr))
-                            .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(aor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(txt_county, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_sub, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -439,8 +503,12 @@ public class PatientRecords extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(aor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_county, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txt_sub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Cmdupdate)
                             .addComponent(cmdclr))
@@ -551,9 +619,10 @@ public class PatientRecords extends javax.swing.JFrame {
                 gcombo.setSelectedItem(gd);
                 String phone=rs.getString("Phone_Number");
                 pno.setText(phone);
-                String area=rs.getString("Area_of_Residence");
-                aor.setSelectedItem(area);
-                
+                String county=rs.getString("County");
+                txt_county.setSelectedItem(county);
+                String subcounty=rs.getString("Sub_County");
+                txt_sub.setSelectedItem(subcounty);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -573,11 +642,12 @@ public class PatientRecords extends javax.swing.JFrame {
             String dob=((JTextField)date.getDateEditor().getUiComponent()).getText();
             String gender= gcombo.getSelectedItem().toString().trim();
             String phone= pno.getText().trim();
-            String area=aor.getSelectedItem().toString().trim(); 
+            String area=txt_county.getSelectedItem().toString().trim(); 
+            String sub=txt_sub.getSelectedItem().toString().trim();
            //int row=ptable.getSelectedRow();
             //String T_click=(ptable.getModel().getValueAt(row, 0).toString());
             String sql="update patients set Patient_No='"+pn+"' ,Fname='"+fname+"' ,Lname='"+lname+"' ,DOB='"+dob+"' "
-                    + ",Gender='"+gender+"' ,Phone_Number='"+phone+"' ,Area_of_Residence='"+area+"' where Patient_No='"+pn+"'";
+                    + ",Gender='"+gender+"' ,Phone_Number='"+phone+"' ,County='"+area+"' ,Sub_County='"+area+"' where Patient_No='"+pn+"'";
             pst=conn.prepareStatement(sql);
            pst.execute();
            JOptionPane.showMessageDialog(null, "Successfully Updated");
@@ -615,8 +685,10 @@ public class PatientRecords extends javax.swing.JFrame {
                 gcombo.setSelectedItem(gd);
                 String phone=rs.getString("Phone_Number");
                 pno.setText(phone);
-                String area=rs.getString("Area_of_Residence");
-                aor.setSelectedItem(area);
+                String area=rs.getString("County");
+                txt_county.setSelectedItem(area);
+                String sub=rs.getString("Sub_County");
+                txt_sub.setSelectedItem(sub);
                 new SelectedPatient().setVisible(true);
                 dispose();
             }
@@ -730,7 +802,6 @@ public class PatientRecords extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cmdupdate;
-    private javax.swing.JComboBox aor;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton cmd_srch;
     private javax.swing.JButton cmdclr;
@@ -749,6 +820,7 @@ public class PatientRecords extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -765,5 +837,7 @@ public class PatientRecords extends javax.swing.JFrame {
     private javax.swing.JTable ptable;
     private javax.swing.JTextField srch;
     private javax.swing.JLabel test;
+    private javax.swing.JComboBox txt_county;
+    private javax.swing.JComboBox txt_sub;
     // End of variables declaration//GEN-END:variables
 }

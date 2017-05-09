@@ -5,11 +5,14 @@
         <group>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/Login.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/SwitchBoard.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/Home.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/DBConnection.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/AdmPatient.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/AdmissionDetails.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/SelectedPatient.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/PatientRecords.java</file>
             <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/DoctorRecords.java</file>
+            <file>file:/C:/Users/Kaboom/Documents/NetBeansProjects/ThirdYearProject/src/Store/Signup.java</file>
         </group>
     </open-files>
 </project-private>

@@ -7,6 +7,7 @@ package Store;
 
 import static Store.Login.holdNames;
 import com.mysql.jdbc.StringUtils;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ItemEvent;
@@ -39,7 +40,6 @@ public class AdmPatient extends javax.swing.JFrame {
                 //        select doctors names
         try {
             String doc_available = (String)dap.getItemAt(0);
-//            test.setText(doc_available);
             String sql1 = "select * from doctors where Specialization = '"+doc_available+"' ";
             pst = conn.prepareStatement(sql1);
             rs = pst.executeQuery(sql1);
@@ -78,6 +78,23 @@ public class AdmPatient extends javax.swing.JFrame {
         }
     }
     
+    //    pre-populates Sub-counties
+    public void prefillSubCounty(){   
+        try {
+            String county=(String)county_combo.getItemAt(0);
+//            String[] kksubs = new String[]{"Wamumu","Thiba","Nyangati","Mahigaini","Mutithi","Nguka","Kutus","Karira"};
+            sub_combo.addItem("Wamumu");
+            sub_combo.addItem("Thiba");
+            sub_combo.addItem("Nyangati");
+            sub_combo.addItem("Mahigaini");
+            sub_combo.addItem("Mutithi");
+            sub_combo.addItem("Nguka");
+            sub_combo.addItem("Kutus");
+            sub_combo.addItem("Karira");
+        } catch (Exception e1) {
+        }
+    }
+    
 //    constructor
     public AdmPatient() {
         initComponents();
@@ -85,6 +102,9 @@ public class AdmPatient extends javax.swing.JFrame {
         CurrentDateAndTime();
         prefillDoctors();
         prefillType();
+        prefillSubCounty();
+        
+        dob.setMaxSelectableDate(new java.util.Date());
         
         
         dap.addItemListener(new ItemListener() {
@@ -130,7 +150,7 @@ public class AdmPatient extends javax.swing.JFrame {
             String doc_available = sele_doc.getSelectedItem().toString().trim(); 
 //            test.setText(doc_available);
             String sql1 = "select * from doctors where Lname = '"+doc_available+"'";
-            System.err.println(sql1);
+//            System.err.println(sql1);
             pst = conn.prepareStatement(sql1);
             rs = pst.executeQuery(sql1);
 //            combo_type.removeAllItems();
@@ -240,6 +260,43 @@ public class AdmPatient extends javax.swing.JFrame {
 //        } catch (Exception e) {
 //        }
         
+//        Handle County and sub-county Selection
+           county_combo.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+        try {
+            String county = county_combo.getSelectedItem().toString().trim();
+            if (county.equalsIgnoreCase("Kakamega")) {
+               sub_combo.removeAllItems();
+               sub_combo.addItem("Lurambi");
+               sub_combo.addItem("Lugari");
+               sub_combo.addItem("Likunyani");
+               sub_combo.addItem("Navakholo");
+               sub_combo.addItem("Butere");
+               sub_combo.addItem("Mumias East");
+               sub_combo.addItem("Mumias West");
+               sub_combo.addItem("Matungu");
+               sub_combo.addItem("Khwisero");
+               sub_combo.addItem("Ikolomani");
+               sub_combo.addItem("Malava");
+               sub_combo.addItem("Shinyalu");
+            }else{
+                sub_combo.removeAllItems();
+                sub_combo.addItem("Wamumu");
+                sub_combo.addItem("Thiba");
+                sub_combo.addItem("Nyangati");
+                sub_combo.addItem("Mahigaini");
+                sub_combo.addItem("Mutithi");
+                sub_combo.addItem("Nguka");
+                sub_combo.addItem("Kutus");
+                sub_combo.addItem("Karira");
+            }
+        } catch (Exception e1) {
+        }
+            }
+        });
+        
 //        Randomly generate the patients number
         int pno = (int)(Math.random() * 1000);
         String pn = Integer.toString(pno);
@@ -303,11 +360,13 @@ public class AdmPatient extends javax.swing.JFrame {
         pclear = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_area = new javax.swing.JComboBox();
+        county_combo = new javax.swing.JComboBox();
         error_pno = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         sele_doc = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
+        sub_combo = new javax.swing.JComboBox();
+        jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -457,11 +516,18 @@ public class AdmPatient extends javax.swing.JFrame {
 
         jLabel7.setText("Phone Number");
 
-        txt_area.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lurambi", "Koro Matangi", "Jua Kali", "Kefinco", "Milimani", "Malaba", "Joy Land", "Town Center", "Lubao", "Tea Zone", "Sichirai", "Mwiyala", "Shinyalu" }));
+        county_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kirinyaga", "Kakamega" }));
+        county_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                county_comboActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setText("Area of Residence");
+        jLabel6.setText("County");
 
         jLabel16.setText("Assigned To");
+
+        jLabel15.setText("Sub-County");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -473,84 +539,86 @@ public class AdmPatient extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(pfname, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(plname, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_area, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(psave)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(pclear)
-                                        .addGap(16, 16, 16))))
+                                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(combo_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(sele_doc, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(sele_doc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(combo_gender, 0, 172, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(error_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(538, Short.MAX_VALUE))
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(sub_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(county_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(84, 84, 84)
+                        .addComponent(error_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(psave)
+                        .addGap(18, 18, 18)
+                        .addComponent(pclear)))
+                .addContainerGap(458, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_pno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(pfname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(plname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(52, 52, 52)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_pno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pfname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(plname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(30, 30, 30)
+                        .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4))
-                .addGap(50, 50, 50)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(combo_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combo_gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel16)
+                    .addComponent(sele_doc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addComponent(error_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(county_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sele_doc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
+                    .addComponent(sub_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(psave)
-                    .addComponent(pclear))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                .addComponent(error_pno, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(204, 204, 204))
+                    .addComponent(pclear)
+                    .addComponent(psave))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Personal Details", jPanel1);
@@ -836,15 +904,17 @@ public class AdmPatient extends javax.swing.JFrame {
             String date=((JTextField)dob.getDateEditor().getUiComponent()).getText();
             String gender= combo_gender.getSelectedItem().toString().trim();
             String phone= txt_phone.getText().trim();
-            String area=txt_area.getSelectedItem().toString().trim();
-            if(!StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(fname) && !StringUtils.isNullOrEmpty(lname) && !StringUtils.isNullOrEmpty(date) && !StringUtils.isNullOrEmpty(gender) && !StringUtils.isNullOrEmpty(doc) && !StringUtils.isNullOrEmpty(phone) && !StringUtils.isNullOrEmpty(area)){
+            String county=county_combo.getSelectedItem().toString().trim();
+            String sub=sub_combo.getSelectedItem().toString().trim();
+            if(!StringUtils.isNullOrEmpty(pno) && !StringUtils.isNullOrEmpty(fname) && !StringUtils.isNullOrEmpty(lname) && !StringUtils.isNullOrEmpty(date) && !StringUtils.isNullOrEmpty(gender) && !StringUtils.isNullOrEmpty(doc) && !StringUtils.isNullOrEmpty(phone) && !StringUtils.isNullOrEmpty(county) && !StringUtils.isNullOrEmpty(sub)){
                 if(PhoneNumberValidator.phone_validation(phone)){
-                String sql="insert into patients values('"+pno+"','"+fname+"','"+lname+"','"+date+"','"+gender+"','"+doc+"','"+phone+"','"+area+"')";
+                String sql="insert into patients values('"+pno+"','"+fname+"','"+lname+"','"+date+"','"+gender+"','"+doc+"','"+phone+"','"+county+"','"+sub+"')";
                 pst=conn.prepareStatement(sql);
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Registration Successfull");
                 }else{
                     error_pno.setText("Invalid Phone Number!!!");
+                    error_pno.setForeground(Color.RED);
                 }
             } else{
                 JOptionPane.showMessageDialog(null, "Please, Fill All The Fields!!!");
@@ -1016,6 +1086,10 @@ public class AdmPatient extends javax.swing.JFrame {
 
     }//GEN-LAST:event_dapItemStateChanged
 
+    private void county_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_county_comboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_county_comboActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1056,6 +1130,7 @@ public class AdmPatient extends javax.swing.JFrame {
     private javax.swing.JMenu aptime;
     private javax.swing.JComboBox avail_docs;
     private javax.swing.JComboBox combo_gender;
+    private javax.swing.JComboBox county_combo;
     private javax.swing.JComboBox dap;
     private com.toedter.calendar.JDateChooser dob;
     private javax.swing.JLabel error_pno;
@@ -1067,6 +1142,7 @@ public class AdmPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1096,9 +1172,9 @@ public class AdmPatient extends javax.swing.JFrame {
     public static javax.swing.JTextField pno_txt;
     private javax.swing.JButton psave;
     private javax.swing.JComboBox sele_doc;
+    private javax.swing.JComboBox sub_combo;
     private javax.swing.JButton tclear;
     private javax.swing.JButton tsave;
-    private javax.swing.JComboBox txt_area;
     private javax.swing.JTextArea txt_descr;
     public static javax.swing.JTextField txt_dno;
     private javax.swing.JTextField txt_phone;

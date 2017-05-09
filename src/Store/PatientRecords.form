@@ -103,22 +103,23 @@
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <Component id="test" min="-2" pref="76" max="-2" attributes="0"/>
+                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="Cmdupdate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="cmdclr" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="namel" max="32767" attributes="0"/>
                           <Component id="pno" max="32767" attributes="0"/>
                           <Component id="gcombo" alignment="0" max="32767" attributes="0"/>
                           <Component id="namef" max="32767" attributes="0"/>
                           <Component id="nop" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="Cmdupdate" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="10" max="32767" attributes="0"/>
-                              <Component id="cmdclr" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="date" alignment="0" max="32767" attributes="0"/>
-                          <Component id="aor" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="date" alignment="0" pref="140" max="32767" attributes="0"/>
+                          <Component id="txt_county" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="txt_sub" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -206,9 +207,14 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="aor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_county" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_sub" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Cmdupdate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cmdclr" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -439,7 +445,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Area Of Residence"/>
+        <Property name="text" type="java.lang.String" value="County"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Cmdupdate">
@@ -483,24 +489,25 @@
     </Component>
     <Component class="javax.swing.JLabel" name="test">
     </Component>
-    <Component class="javax.swing.JComboBox" name="aor">
+    <Component class="javax.swing.JComboBox" name="txt_county">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="13">
-            <StringItem index="0" value="Lurambi"/>
-            <StringItem index="1" value="Koro Matangi"/>
-            <StringItem index="2" value="Jua Kali"/>
-            <StringItem index="3" value="Kefinco"/>
-            <StringItem index="4" value="Milimani"/>
-            <StringItem index="5" value="Malaba"/>
-            <StringItem index="6" value="Joy Land"/>
-            <StringItem index="7" value="Town Center"/>
-            <StringItem index="8" value="Lubao"/>
-            <StringItem index="9" value="Tea Zone"/>
-            <StringItem index="10" value="Sichirai"/>
-            <StringItem index="11" value="Mwiyala"/>
-            <StringItem index="12" value="Shinyalu"/>
+          <StringArray count="2">
+            <StringItem index="0" value="Kirinyaga"/>
+            <StringItem index="1" value="Kakamega"/>
           </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sub County"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="txt_sub">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
