@@ -103,7 +103,8 @@ public class AdmPatient extends javax.swing.JFrame {
         prefillDoctors();
         prefillType();
         prefillSubCounty();
-        
+       
+//        restrict selectable date to the current day
         dob.setMaxSelectableDate(new java.util.Date());
         
         

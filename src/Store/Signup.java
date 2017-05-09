@@ -31,6 +31,9 @@ public class Signup extends javax.swing.JFrame {
         conn=DBConnection.ConnecrDB();
         CurrentDateAndTime();
         
+//        restrict selectable date to the current day
+        date_emp.setMaxSelectableDate(new java.util.Date());
+        
 //        Randomly generate doctors numbers
         int dn = (int)(Math.random() * 1000);
         String dno = Integer.toString(dn);
@@ -315,9 +318,9 @@ public class Signup extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(txt_pno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(8, 8, 8)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmd_submit)

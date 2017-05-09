@@ -33,6 +33,9 @@ public class DoctorRecords extends javax.swing.JFrame {
         CurrentDateAndTime();
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
         setIconImage(img);
+        
+//        restrict selectable date to the current day
+        de.setMaxSelectableDate(new java.util.Date());
     }
     
     public void CurrentDateAndTime(){
@@ -295,6 +298,7 @@ public class DoctorRecords extends javax.swing.JFrame {
 
         jLabel9.setText("Date Employed");
 
+        de.setDateFormatString(" yyyy/MM/d");
         de.setMaxSelectableDate(new java.util.Date(1484085712000L));
 
         jMenu1.setText("File");

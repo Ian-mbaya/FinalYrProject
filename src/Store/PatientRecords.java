@@ -59,6 +59,8 @@ public class PatientRecords extends javax.swing.JFrame {
         CurrentDateAndTime();
         prefillSubCounty();
         
+        date.setMaxSelectableDate(new java.util.Date());
+        
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
         setIconImage(img);
         
@@ -355,6 +357,7 @@ public class PatientRecords extends javax.swing.JFrame {
             }
         });
 
+        date.setDateFormatString(" yyyy/MM/d");
         date.setMaxSelectableDate(new java.util.Date(1484085680000L));
 
         txt_county.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kirinyaga", "Kakamega" }));

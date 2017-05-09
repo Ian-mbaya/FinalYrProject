@@ -66,6 +66,10 @@ public class SelectedPatient extends javax.swing.JFrame {
         TableUpdateP();
         TableUpdateT();
 //        CurrentDateAndTime();
+        
+//        restrict selectable date to the current day
+        p_d.setMaxSelectableDate(new java.util.Date());
+        
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Store/icons/H-2-icon.png"));
         setIconImage(img);
         
@@ -339,6 +343,8 @@ public class SelectedPatient extends javax.swing.JFrame {
         });
 
         g_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
+
+        p_d.setDateFormatString(" yyyy/MM/d");
 
         p_a.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kirinyaga", "Kakamega" }));
 
